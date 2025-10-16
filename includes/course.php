@@ -101,15 +101,34 @@ function save_test_result(int $userId, int $courseId, int $scorePercent, bool $p
     return (int) $pdo->lastInsertId();
 }
 
-function record_certificate(int $userId, int $courseId, string $pdfPath): string
+function get_result_by_id(int $resultId): ?array
 {
     $pdo = get_db_connection();
-    $stmt = $pdo->prepare('INSERT INTO certificates (user_id, course_id, certificate_number, pdf_path, issued_at) VALUES (:user_id, :course_id, :number, :pdf_path, NOW())');
+    $stmt = $pdo->prepare('SELECT * FROM results WHERE id = :id LIMIT 1');
+    $stmt->execute(['id' => $resultId]);
+    $result = $stmt->fetch();
+
+    return $result ?: null;
+}
+
+function record_certificate(
+    int $userId,
+    int $courseId,
+    string $pdfPath,
+    string $trainingDate,
+    string $testDate,
+    string $companyName
+): string {
+    $pdo = get_db_connection();
+    $stmt = $pdo->prepare('INSERT INTO certificates (user_id, course_id, certificate_number, pdf_path, training_date, test_date, company_name, issued_at) VALUES (:user_id, :course_id, :number, :pdf_path, :training_date, :test_date, :company_name, NOW())');
     $stmt->execute([
         'user_id' => $userId,
         'course_id' => $courseId,
         'number' => '',
         'pdf_path' => $pdfPath,
+        'training_date' => $trainingDate,
+        'test_date' => $testDate,
+        'company_name' => $companyName,
     ]);
 
     $certificateId = (int) $pdo->lastInsertId();

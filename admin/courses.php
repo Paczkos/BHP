@@ -74,6 +74,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         redirect('courses.php?edit=' . $courseId);
     }
 
+    if ($action === 'delete_course') {
+        $courseId = isset($_POST['course_id']) ? (int) $_POST['course_id'] : 0;
+
+        if ($courseId <= 0) {
+            flash('error', t('alerts.course_not_found'));
+            redirect('courses.php');
+        }
+
+        try {
+            $stmt = $pdo->prepare('DELETE FROM courses WHERE id = :id');
+            $stmt->execute(['id' => $courseId]);
+
+            if ($stmt->rowCount() > 0) {
+                flash('success', t('admin.course_deleted'));
+            } else {
+                flash('error', t('admin.course_delete_failed'));
+            }
+        } catch (PDOException $e) {
+            flash('error', t('admin.course_delete_failed'));
+        }
+
+        redirect('courses.php');
+    }
+
     $courseId = isset($_POST['course_id']) ? (int) $_POST['course_id'] : null;
     $title = sanitize($_POST['title'] ?? '');
     $description = sanitize($_POST['description'] ?? '');
@@ -271,6 +295,11 @@ $formFilePath = $editingCourse['file_path'] ?? '';
                             <td><a class="btn btn-outline" href="questions.php?course_id=<?= $course['id'] ?>"><?= t('admin.questions') ?></a></td>
                             <td class="table-actions">
                                 <a class="btn btn-outline" href="courses.php?edit=<?= $course['id'] ?>"><?= t('admin.edit') ?></a>
+                                <form method="post" class="inline-form" onsubmit="return confirm('<?= t('admin.course_delete_confirm') ?>');">
+                                    <input type="hidden" name="action" value="delete_course">
+                                    <input type="hidden" name="course_id" value="<?= $course['id'] ?>">
+                                    <button class="btn btn-danger" type="submit"><?= t('admin.delete') ?></button>
+                                </form>
                             </td>
                         </tr>
                     <?php endforeach; ?>

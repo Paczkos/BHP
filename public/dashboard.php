@@ -71,7 +71,9 @@ $certificates = get_user_certificates($user['id']);
                     <tr>
                         <th><?= t('nav.courses') ?></th>
                         <th><?= t('certificate.number') ?></th>
-                        <th><?= t('certificate.date') ?></th>
+                        <th><?= t('certificate.training_date') ?></th>
+                        <th><?= t('certificate.test_date') ?></th>
+                        <th><?= t('certificate.issued_at') ?></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -80,6 +82,8 @@ $certificates = get_user_certificates($user['id']);
                         <tr>
                             <td><?= htmlspecialchars($certificate['title']) ?></td>
                             <td><?= htmlspecialchars($certificate['certificate_number']) ?></td>
+                            <td><?= htmlspecialchars($certificate['training_date']) ?></td>
+                            <td><?= htmlspecialchars($certificate['test_date']) ?></td>
                             <td><?= htmlspecialchars($certificate['issued_at']) ?></td>
                             <td><a class="btn btn-outline" href="../<?= htmlspecialchars($certificate['pdf_path']) ?>" target="_blank"><?= t('dashboard.download') ?></a></td>
                         </tr>

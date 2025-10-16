@@ -29,6 +29,10 @@ if (!defined('APP_NAME')) {
     define('APP_NAME', config_env('APP_NAME', 'AGAT GROUP – Platforma BHP'));
 }
 
+if (!defined('APP_COMPANY')) {
+    define('APP_COMPANY', config_env('APP_COMPANY', 'AGAT GROUP Sp. z o.o.'));
+}
+
 if (!function_exists('config_default_app_url')) {
     function config_default_app_url(): string
     {

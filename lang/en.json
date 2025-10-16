@@ -111,9 +111,13 @@
   },
   "certificate": {
     "title": "Certificate of Completion",
-    "body": "This certifies that %s, document number %s, has successfully completed the course: %s.",
+    "body": "This certifies that %s, document number %s, has successfully completed the course \"%s\" delivered for %s.",
     "number": "Certificate number",
-    "date": "Date",
+    "training_date": "Training date",
+    "test_date": "Test date",
+    "company_label": "Training provided for",
+    "issued_at": "Certificate issued",
+    "stamp_instruction": "Please affix the verification stamp below",
     "signature_placeholder": "Signature / Stamp"
   },
   "admin": {
@@ -163,6 +167,9 @@
     "edit_course_help": "Update the training details and linked materials.",
     "course_created": "Course saved successfully.",
     "course_updated": "Course updated successfully.",
+    "course_deleted": "Course removed successfully.",
+    "course_delete_failed": "We couldn't remove this course.",
+    "course_delete_confirm": "Delete this course? All related materials, questions, results and certificates will be removed.",
     "course_description": "Course description",
     "no_courses": "No courses have been created yet.",
     "created_at": "Created",

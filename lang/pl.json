@@ -111,9 +111,13 @@
   },
   "certificate": {
     "title": "Certyfikat ukończenia",
-    "body": "Niniejszym zaświadcza się, że %s, numer dokumentu %s, ukończył szkolenie: %s.",
+    "body": "Niniejszym zaświadcza się, że %s, numer dokumentu %s, pomyślnie ukończył(a) szkolenie \"%s\" realizowane dla %s.",
     "number": "Numer certyfikatu",
-    "date": "Data",
+    "training_date": "Data szkolenia",
+    "test_date": "Data testu",
+    "company_label": "Szkolenie zrealizowane dla",
+    "issued_at": "Data wystawienia certyfikatu",
+    "stamp_instruction": "Prosimy o przybicie pieczątki w wyznaczonym miejscu",
     "signature_placeholder": "Podpis / Pieczęć"
   },
   "admin": {
@@ -163,6 +167,9 @@
     "edit_course_help": "Zaktualizuj tytuł, opis i materiały szkolenia.",
     "course_created": "Szkolenie zapisano pomyślnie.",
     "course_updated": "Szkolenie zostało zaktualizowane.",
+    "course_deleted": "Szkolenie zostało usunięte.",
+    "course_delete_failed": "Nie udało się usunąć szkolenia.",
+    "course_delete_confirm": "Usunąć to szkolenie? Wszystkie materiały, pytania, wyniki i certyfikaty zostaną skasowane.",
     "course_description": "Opis szkolenia",
     "no_courses": "Nie dodano jeszcze żadnych szkoleń.",
     "created_at": "Utworzono",

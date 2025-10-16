@@ -71,6 +71,9 @@ CREATE TABLE IF NOT EXISTS certificates (
     course_id INT NOT NULL,
     certificate_number VARCHAR(50) NOT NULL,
     pdf_path VARCHAR(255) NOT NULL,
+    training_date DATE NOT NULL,
+    test_date DATE NOT NULL,
+    company_name VARCHAR(255) NOT NULL,
     signed_scan_path VARCHAR(255),
     issued_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_certificate_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
@@ -126,5 +129,5 @@ INSERT INTO answers (question_id, answer_text, is_correct) VALUES
 INSERT INTO results (user_id, course_id, score_percent, passed) VALUES
 (1, 1, 92, 1);
 
-INSERT INTO certificates (user_id, course_id, certificate_number, pdf_path, signed_scan_path) VALUES
-(1, 1, 'BHP-2025-000001', 'certificates/certificate_sample.pdf', NULL);
+INSERT INTO certificates (user_id, course_id, certificate_number, pdf_path, training_date, test_date, company_name, signed_scan_path) VALUES
+(1, 1, 'BHP-2025-000001', 'certificates/certificate_sample.pdf', '2025-01-10', '2025-01-10', 'AGAT GROUP Sp. z o.o.', NULL);

@@ -111,9 +111,13 @@
   },
   "certificate": {
     "title": "Sertifikat Kelulusan",
-    "body": "Dengan ini dinyatakan bahwa %s, nomor dokumen %s, telah menyelesaikan kursus: %s.",
+    "body": "Dengan ini dinyatakan bahwa %s, nomor dokumen %s, telah menyelesaikan kursus \"%s\" yang diselenggarakan untuk %s.",
     "number": "Nomor sertifikat",
-    "date": "Tanggal",
+    "training_date": "Tanggal pelatihan",
+    "test_date": "Tanggal tes",
+    "company_label": "Pelatihan diselenggarakan untuk",
+    "issued_at": "Tanggal penerbitan sertifikat",
+    "stamp_instruction": "Silakan tempelkan stempel verifikasi pada kotak di bawah ini",
     "signature_placeholder": "Tanda tangan / Stempel"
   },
   "admin": {
@@ -163,6 +167,9 @@
     "edit_course_help": "Perbarui judul, deskripsi, dan materi pelatihan.",
     "course_created": "Kursus berhasil disimpan.",
     "course_updated": "Kursus berhasil diperbarui.",
+    "course_deleted": "Kursus berhasil dihapus.",
+    "course_delete_failed": "Kursus tidak dapat dihapus.",
+    "course_delete_confirm": "Hapus kursus ini? Semua materi, pertanyaan, hasil, dan sertifikat akan ikut terhapus.",
     "course_description": "Deskripsi kursus",
     "no_courses": "Belum ada kursus yang dibuat.",
     "created_at": "Dibuat",

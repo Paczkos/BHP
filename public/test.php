@@ -37,8 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resultId = save_test_result($user['id'], $courseId, $score, $passed);
 
     if ($passed) {
-        $pdfPath = generate_certificate_pdf($user, $course, 'TEMP');
-        $certificateNumber = record_certificate($user['id'], $courseId, $pdfPath);
+        $result = get_result_by_id($resultId);
+        $testDate = $result && !empty($result['completed_at']) ? date('Y-m-d', strtotime($result['completed_at'])) : date('Y-m-d');
+        $trainingDate = $testDate;
+        $companyName = APP_COMPANY;
+
+        $pdfPath = generate_certificate_pdf($user, $course, 'TEMP', $trainingDate, $testDate, $companyName);
+        $certificateNumber = record_certificate($user['id'], $courseId, $pdfPath, $trainingDate, $testDate, $companyName);
         $finalPath = str_replace('TEMP', $certificateNumber, $pdfPath);
         rename(__DIR__ . '/../' . $pdfPath, __DIR__ . '/../' . $finalPath);
         $pdo->prepare('UPDATE certificates SET pdf_path = :path WHERE certificate_number = :number')

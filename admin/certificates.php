@@ -6,8 +6,13 @@ $pdo = get_db_connection();
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['certificate_id'])) {
     $certificateId = (int)$_POST['certificate_id'];
     if (!empty($_FILES['signed_scan']['name'])) {
+        $uploadDir = __DIR__ . '/../uploads/signed/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0775, true);
+        }
+
         $fileName = 'signed_' . $certificateId . '_' . basename($_FILES['signed_scan']['name']);
-        $target = __DIR__ . '/../uploads/signed/' . $fileName;
+        $target = $uploadDir . $fileName;
         if (move_uploaded_file($_FILES['signed_scan']['tmp_name'], $target)) {
             $pdo->prepare('UPDATE certificates SET signed_scan_path = :path WHERE id = :id')
                 ->execute([
@@ -49,7 +54,10 @@ $certificates = $pdo->query('SELECT cert.*, u.first_name, u.last_name, c.title F
                         <th><?= t('auth.last_name') ?></th>
                         <th><?= t('nav.courses') ?></th>
                         <th><?= t('certificate.number') ?></th>
-                        <th><?= t('certificate.date') ?></th>
+                        <th><?= t('certificate.training_date') ?></th>
+                        <th><?= t('certificate.test_date') ?></th>
+                        <th><?= t('certificate.company_label') ?></th>
+                        <th><?= t('certificate.issued_at') ?></th>
                         <th><?= t('admin.upload_signed_scan') ?></th>
                     </tr>
                 </thead>
@@ -60,6 +68,9 @@ $certificates = $pdo->query('SELECT cert.*, u.first_name, u.last_name, c.title F
                             <td><?= htmlspecialchars($certificate['last_name']) ?></td>
                             <td><?= htmlspecialchars($certificate['title']) ?></td>
                             <td><a class="link-muted" href="../<?= htmlspecialchars($certificate['pdf_path']) ?>" target="_blank" rel="noopener"><?= htmlspecialchars($certificate['certificate_number']) ?></a></td>
+                            <td><?= htmlspecialchars($certificate['training_date']) ?></td>
+                            <td><?= htmlspecialchars($certificate['test_date']) ?></td>
+                            <td><?= htmlspecialchars($certificate['company_name']) ?></td>
                             <td><?= date('Y-m-d', strtotime($certificate['issued_at'])) ?></td>
                             <td>
                                 <form class="inline-form" method="post" enctype="multipart/form-data">

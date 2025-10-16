@@ -111,9 +111,13 @@
   },
   "certificate": {
     "title": "Chứng chỉ hoàn thành",
-    "body": "Xác nhận rằng %s, số giấy tờ %s, đã hoàn thành khóa học: %s.",
+    "body": "Xác nhận rằng %s, số giấy tờ %s, đã hoàn thành khóa học \"%s\" được tổ chức cho %s.",
     "number": "Số chứng chỉ",
-    "date": "Ngày",
+    "training_date": "Ngày đào tạo",
+    "test_date": "Ngày kiểm tra",
+    "company_label": "Khóa đào tạo dành cho",
+    "issued_at": "Ngày cấp chứng chỉ",
+    "stamp_instruction": "Vui lòng đóng dấu xác nhận trong ô bên dưới",
     "signature_placeholder": "Chữ ký / Con dấu"
   },
   "admin": {
@@ -163,6 +167,9 @@
     "edit_course_help": "Cập nhật tiêu đề, mô tả và tài liệu khóa học.",
     "course_created": "Đã lưu khóa học thành công.",
     "course_updated": "Khóa học đã được cập nhật thành công.",
+    "course_deleted": "Khóa học đã được xóa.",
+    "course_delete_failed": "Không thể xóa khóa học.",
+    "course_delete_confirm": "Xóa khóa học này? Tất cả tài liệu, câu hỏi, kết quả và chứng chỉ liên quan sẽ bị xóa.",
     "course_description": "Mô tả khóa học",
     "no_courses": "Chưa có khóa học nào.",
     "created_at": "Ngày tạo",

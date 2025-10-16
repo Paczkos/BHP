@@ -56,7 +56,7 @@ $results = $pdo->query('SELECT r.*, u.first_name, u.last_name, c.title FROM resu
                         <th><?= t('nav.courses') ?></th>
                         <th><?= t('dashboard.score') ?></th>
                         <th><?= t('dashboard.status_passed') ?></th>
-                        <th><?= t('certificate.date') ?></th>
+                        <th><?= t('certificate.test_date') ?></th>
                         <th><?= t('admin.actions') ?></th>
                     </tr>
                 </thead>
