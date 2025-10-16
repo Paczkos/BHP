@@ -134,11 +134,10 @@ function get_result_by_id(int $resultId): ?array
 function record_certificate(
     int $userId,
     int $courseId,
-    string $pdfPath,
     string $trainingDate,
     string $testDate,
-    string $companyName
-): string {
+    ?string $companyName = null
+): array {
     $pdo = get_db_connection();
 
     if (certificates_support_extended_details()) {
@@ -147,10 +146,10 @@ function record_certificate(
             'user_id' => $userId,
             'course_id' => $courseId,
             'number' => '',
-            'pdf_path' => $pdfPath,
+            'pdf_path' => '',
             'training_date' => $trainingDate,
             'test_date' => $testDate,
-            'company_name' => $companyName,
+            'company_name' => $companyName ?? '',
         ]);
     } else {
         $stmt = $pdo->prepare('INSERT INTO certificates (user_id, course_id, certificate_number, pdf_path, issued_at) VALUES (:user_id, :course_id, :number, :pdf_path, NOW())');
@@ -158,7 +157,7 @@ function record_certificate(
             'user_id' => $userId,
             'course_id' => $courseId,
             'number' => '',
-            'pdf_path' => $pdfPath,
+            'pdf_path' => '',
         ]);
     }
 
@@ -171,7 +170,10 @@ function record_certificate(
         'id' => $certificateId,
     ]);
 
-    return $certificateNumber;
+    return [
+        'id' => $certificateId,
+        'number' => $certificateNumber,
+    ];
 }
 
 function get_user_results(int $userId): array

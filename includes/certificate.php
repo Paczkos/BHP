@@ -8,7 +8,7 @@ function generate_certificate_pdf(
     string $certificateNumber,
     string $trainingDate,
     string $testDate,
-    string $companyName
+    int $scorePercent
 ): string {
     $pdf = new FPDF('L', 'mm', 'A4');
     $pdf->AddPage();
@@ -27,27 +27,55 @@ function generate_certificate_pdf(
         t('certificate.body'),
         $user['first_name'] . ' ' . $user['last_name'],
         $user['passport_or_pesel'],
-        $course['title'],
-        $companyName
+        $course['title']
     );
     $pdf->MultiCell(0, 10, $body, 0, 'C');
 
+    $pdf->Ln(8);
+    $pdf->SetFont('Helvetica', 'B', 15);
+    $pdf->Cell(0, 10, t('certificate.details_heading'), 0, 1, 'C');
+
+    $pdf->SetFont('Helvetica', '', 12);
+    $details = [
+        t('certificate.course_label') . ': ' . $course['title'],
+        t('certificate.score') . ': ' . $scorePercent . '%',
+        t('certificate.training_date') . ': ' . $trainingDate,
+        t('certificate.test_date') . ': ' . $testDate,
+        t('certificate.number') . ': ' . $certificateNumber,
+        t('certificate.issued_at') . ': ' . date('Y-m-d'),
+    ];
+
+    foreach ($details as $line) {
+        $pdf->Cell(0, 8, $line, 0, 1, 'C');
+    }
+
     $pdf->Ln(6);
-    $pdf->SetFont('Helvetica', '', 13);
-    $pdf->Cell(0, 10, t('certificate.company_label') . ': ' . $companyName, 0, 1, 'C');
-    $pdf->Cell(0, 10, t('certificate.training_date') . ': ' . $trainingDate, 0, 1, 'C');
-    $pdf->Cell(0, 10, t('certificate.test_date') . ': ' . $testDate, 0, 1, 'C');
-    $pdf->Cell(0, 10, t('certificate.number') . ': ' . $certificateNumber, 0, 1, 'C');
-    $pdf->Cell(0, 10, t('certificate.issued_at') . ': ' . date('Y-m-d'), 0, 1, 'C');
+    $pdf->SetFont('Helvetica', 'B', 15);
+    $pdf->Cell(0, 10, t('certificate.trainee_heading'), 0, 1, 'C');
+
+    $pdf->SetFont('Helvetica', '', 12);
+    $trainee = [
+        t('certificate.trainee_name') . ': ' . $user['first_name'] . ' ' . $user['last_name'],
+        t('certificate.trainee_document') . ': ' . $user['passport_or_pesel'],
+    ];
+
+    foreach ($trainee as $line) {
+        $pdf->Cell(0, 8, $line, 0, 1, 'C');
+    }
 
     $pdf->Ln(14);
     $pdf->SetFont('Helvetica', '', 12);
+    $pdf->Cell(0, 8, t('certificate.company_placeholder'), 0, 1, 'C');
+    $pdf->Cell(0, 8, str_repeat('_', 50), 0, 1, 'C');
+    $pdf->Cell(0, 8, t('certificate.trainer_placeholder'), 0, 1, 'C');
+    $pdf->Cell(0, 8, str_repeat('_', 50), 0, 1, 'C');
+
+    $pdf->Ln(6);
     $pdf->Cell(0, 8, t('certificate.stamp_instruction'), 0, 1, 'C');
-    $pdf->Ln(4);
+    $pdf->Ln(2);
 
     // Draw a simple signature placeholder using text characters because the
     // bundled lightweight FPDF build does not expose rectangle drawing APIs.
-    $pdf->SetFont('Helvetica', '', 12);
     $pdf->Cell(0, 8, str_repeat('_', 40), 0, 1, 'C');
     $pdf->SetFont('Helvetica', 'I', 12);
     $pdf->Cell(0, 10, t('certificate.signature_placeholder'), 0, 1, 'C');

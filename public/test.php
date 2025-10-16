@@ -40,16 +40,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = get_result_by_id($resultId);
         $testDate = $result && !empty($result['completed_at']) ? date('Y-m-d', strtotime($result['completed_at'])) : date('Y-m-d');
         $trainingDate = $testDate;
-        $companyName = APP_COMPANY;
+        $companyName = null;
 
-        $pdfPath = generate_certificate_pdf($user, $course, 'TEMP', $trainingDate, $testDate, $companyName);
-        $certificateNumber = record_certificate($user['id'], $courseId, $pdfPath, $trainingDate, $testDate, $companyName);
-        $finalPath = str_replace('TEMP', $certificateNumber, $pdfPath);
-        rename(__DIR__ . '/../' . $pdfPath, __DIR__ . '/../' . $finalPath);
-        $pdo->prepare('UPDATE certificates SET pdf_path = :path WHERE certificate_number = :number')
+        $certificate = record_certificate($user['id'], $courseId, $trainingDate, $testDate, $companyName);
+        $pdfPath = generate_certificate_pdf($user, $course, $certificate['number'], $trainingDate, $testDate, $score);
+
+        $pdo->prepare('UPDATE certificates SET pdf_path = :path WHERE id = :id')
             ->execute([
-                'path' => $finalPath,
-                'number' => $certificateNumber,
+                'path' => $pdfPath,
+                'id' => $certificate['id'],
             ]);
         send_notification($user['email'], t('nav.certificates'), t('alerts.certificate_generated'));
         flash('success', t('test.result_passed', ['score' => $score]));
