@@ -19,7 +19,61 @@ if (isset($_GET['edit'])) {
     }
 }
 
+$courseMaterials = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = $_POST['action'] ?? 'save_course';
+
+    if ($action === 'add_material') {
+        $courseId = isset($_POST['course_id']) ? (int) $_POST['course_id'] : 0;
+        $title = sanitize($_POST['material_title'] ?? '');
+        $materialPath = sanitize($_POST['material_path'] ?? '');
+
+        if ($courseId <= 0) {
+            flash('error', t('alerts.course_not_found'));
+            redirect('courses.php');
+        }
+
+        if ($title === '' || $materialPath === '') {
+            flash('error', t('admin.material_required'));
+            redirect('courses.php?edit=' . $courseId);
+        }
+
+        $stmt = $pdo->prepare('INSERT INTO course_materials (course_id, title, file_path) VALUES (:course_id, :title, :file_path)');
+        $stmt->execute([
+            'course_id' => $courseId,
+            'title' => $title,
+            'file_path' => $materialPath,
+        ]);
+
+        flash('success', t('admin.material_added'));
+        redirect('courses.php?edit=' . $courseId);
+    }
+
+    if ($action === 'delete_material') {
+        $courseId = isset($_POST['course_id']) ? (int) $_POST['course_id'] : 0;
+        $materialId = isset($_POST['material_id']) ? (int) $_POST['material_id'] : 0;
+
+        if ($courseId <= 0 || $materialId <= 0) {
+            flash('error', t('admin.material_not_found'));
+            redirect('courses.php');
+        }
+
+        $stmt = $pdo->prepare('DELETE FROM course_materials WHERE id = :id AND course_id = :course_id');
+        $stmt->execute([
+            'id' => $materialId,
+            'course_id' => $courseId,
+        ]);
+
+        if ($stmt->rowCount() > 0) {
+            flash('success', t('admin.material_deleted'));
+        } else {
+            flash('error', t('admin.material_not_found'));
+        }
+
+        redirect('courses.php?edit=' . $courseId);
+    }
+
     $courseId = isset($_POST['course_id']) ? (int) $_POST['course_id'] : null;
     $title = sanitize($_POST['title'] ?? '');
     $description = sanitize($_POST['description'] ?? '');
@@ -51,6 +105,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $courses = $pdo->query('SELECT * FROM courses ORDER BY created_at DESC')->fetchAll();
+
+if ($editingCourse) {
+    $materialsStmt = $pdo->prepare('SELECT * FROM course_materials WHERE course_id = :course_id ORDER BY created_at DESC, id DESC');
+    $materialsStmt->execute(['course_id' => $editingCourse['id']]);
+    $courseMaterials = $materialsStmt->fetchAll();
+}
+
 $formTitle = $editingCourse['title'] ?? '';
 $formDescription = $editingCourse['description'] ?? '';
 $formLanguage = $editingCourse['language'] ?? 'pl';
@@ -80,6 +141,7 @@ $formFilePath = $editingCourse['file_path'] ?? '';
         <p><?= $editingCourse ? t('admin.edit_course_help') : t('admin.add_course_help') ?></p>
     </div>
     <form method="post" class="form-vertical">
+        <input type="hidden" name="action" value="save_course">
         <?php if ($editingCourse): ?>
             <input type="hidden" name="course_id" value="<?= (int) $editingCourse['id'] ?>">
         <?php endif; ?>
@@ -114,6 +176,70 @@ $formFilePath = $editingCourse['file_path'] ?? '';
     </form>
 </div>
 
+<?php if ($editingCourse): ?>
+    <div class="card admin-card admin-card--form">
+        <div class="admin-card-header">
+            <h2><?= t('admin.manage_materials') ?></h2>
+            <p><?= t('admin.manage_materials_help') ?></p>
+        </div>
+
+        <?php if (!empty($editingCourse['file_path'])): ?>
+            <div class="material-row material-row--primary">
+                <div>
+                    <strong><?= t('admin.primary_course_file') ?></strong>
+                    <div class="table-subtext"><?= htmlspecialchars($editingCourse['file_path']) ?></div>
+                    <p class="material-hint"><?= t('admin.primary_course_file_hint') ?></p>
+                </div>
+                <div class="material-actions">
+                    <a class="btn btn-outline" href="<?= asset_url($editingCourse['file_path']) ?>" target="_blank" rel="noopener"><?= t('dashboard.download') ?></a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if (empty($courseMaterials)): ?>
+            <p class="empty-state"><?= t('admin.no_materials') ?></p>
+        <?php else: ?>
+            <div class="materials-list">
+                <?php foreach ($courseMaterials as $material): ?>
+                    <div class="material-row">
+                        <div>
+                            <strong><?= htmlspecialchars($material['title']) ?></strong>
+                            <div class="table-subtext"><?= htmlspecialchars($material['file_path']) ?></div>
+                        </div>
+                        <div class="material-actions">
+                            <a class="btn btn-outline" href="<?= asset_url($material['file_path']) ?>" target="_blank" rel="noopener"><?= t('dashboard.download') ?></a>
+                            <form method="post" class="inline-form" onsubmit="return confirm('<?= t('admin.confirm_delete') ?>');">
+                                <input type="hidden" name="action" value="delete_material">
+                                <input type="hidden" name="course_id" value="<?= (int) $editingCourse['id'] ?>">
+                                <input type="hidden" name="material_id" value="<?= (int) $material['id'] ?>">
+                                <button class="btn btn-danger" type="submit"><?= t('admin.delete') ?></button>
+                            </form>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+        <form method="post" class="form-vertical material-form">
+            <input type="hidden" name="action" value="add_material">
+            <input type="hidden" name="course_id" value="<?= (int) $editingCourse['id'] ?>">
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="material-title"><?= t('admin.material_title') ?></label>
+                    <input type="text" id="material-title" name="material_title" placeholder="Prezentacja PDF" required>
+                </div>
+                <div class="form-field">
+                    <label for="material-path"><?= t('admin.material_path') ?></label>
+                    <input type="text" id="material-path" name="material_path" placeholder="uploads/material.pdf" required>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit"><?= t('admin.add_material') ?></button>
+            </div>
+        </form>
+    </div>
+<?php endif; ?>
+
 <div class="card admin-card table-card">
     <?php if (empty($courses)): ?>
         <p class="empty-state"><?= t('admin.no_courses') ?></p>
@@ -137,7 +263,7 @@ $formFilePath = $editingCourse['file_path'] ?? '';
                             <td>
                                 <strong><?= htmlspecialchars($course['title']) ?></strong>
                                 <?php if (!empty($course['file_path'])): ?>
-                                    <div class="table-subtext"><a href="../<?= htmlspecialchars($course['file_path']) ?>" target="_blank" rel="noopener"><?= t('admin.materials') ?></a></div>
+                                    <div class="table-subtext"><a href="<?= asset_url($course['file_path']) ?>" target="_blank" rel="noopener"><?= t('admin.materials') ?></a></div>
                                 <?php endif; ?>
                             </td>
                             <td><?= strtoupper($course['language']) ?></td>

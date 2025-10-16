@@ -81,7 +81,11 @@
     "score": "Результат",
     "status_passed": "Сдано",
     "status_failed": "Не сдано",
-    "download": "Скачать"
+    "download": "Скачать",
+    "no_materials": "Учебные материалы ещё не добавлены.",
+    "primary_material": "Основной материал",
+    "material_preview_unavailable": "Предпросмотр недоступен для этого типа файла. Используйте кнопку скачивания.",
+    "download_material": "Скачать файл"
   },
   "profile": {
     "title": "Ваши данные",
@@ -197,7 +201,20 @@
     "edit": "Редактировать",
     "result_deleted": "Результат удалён.",
     "result_delete_failed": "Не удалось удалить результат.",
-    "result_delete_confirm": "Удалить этот результат теста навсегда?"
+    "result_delete_confirm": "Удалить этот результат теста навсегда?",
+    "manage_materials": "Учебные материалы",
+    "manage_materials_help": "Добавьте ссылки на файлы из каталога uploads, чтобы слушатели сразу получили к ним доступ.",
+    "primary_course_file": "Основной файл курса",
+    "primary_course_file_hint": "Этот файл отображается вместе с дополнительными материалами.",
+    "no_materials": "Дополнительные материалы ещё не добавлены.",
+    "material_title": "Отображаемое название",
+    "material_path": "Путь к файлу или URL",
+    "add_material": "Добавить материал",
+    "material_added": "Материал добавлен к курсу.",
+    "material_deleted": "Материал удалён из курса.",
+    "material_required": "Укажите название и путь к файлу.",
+    "material_not_found": "Не удалось найти указанный материал.",
+    "confirm_delete": "Вы уверены, что хотите удалить этот материал?"
   },
   "alerts": {
     "course_not_found": "Выбранный курс не найден.",

@@ -22,9 +22,42 @@ function get_course(int $courseId): ?array
 function get_course_materials(int $courseId): array
 {
     $pdo = get_db_connection();
-    $stmt = $pdo->prepare('SELECT * FROM course_materials WHERE course_id = :course_id ORDER BY id');
+    $stmt = $pdo->prepare('SELECT id, course_id, title, file_path, created_at FROM course_materials WHERE course_id = :course_id ORDER BY id');
     $stmt->execute(['course_id' => $courseId]);
-    return $stmt->fetchAll();
+    $materials = $stmt->fetchAll();
+
+    foreach ($materials as &$material) {
+        $material['is_primary'] = false;
+    }
+    unset($material);
+
+    $courseStmt = $pdo->prepare('SELECT title, file_path, created_at FROM courses WHERE id = :id');
+    $courseStmt->execute(['id' => $courseId]);
+    $course = $courseStmt->fetch();
+
+    if ($course && !empty($course['file_path'])) {
+        $alreadyListed = false;
+
+        foreach ($materials as $material) {
+            if ($material['file_path'] === $course['file_path']) {
+                $alreadyListed = true;
+                break;
+            }
+        }
+
+        if (!$alreadyListed) {
+            array_unshift($materials, [
+                'id' => null,
+                'course_id' => $courseId,
+                'title' => $course['title'],
+                'file_path' => $course['file_path'],
+                'created_at' => $course['created_at'] ?? null,
+                'is_primary' => true,
+            ]);
+        }
+    }
+
+    return $materials;
 }
 
 function get_random_questions(int $courseId, string $language, int $limit = 5): array

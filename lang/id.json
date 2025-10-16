@@ -81,7 +81,11 @@
     "score": "Nilai",
     "status_passed": "Lulus",
     "status_failed": "Tidak lulus",
-    "download": "Unduh"
+    "download": "Unduh",
+    "no_materials": "Belum ada materi pelatihan yang ditambahkan.",
+    "primary_material": "Materi utama",
+    "material_preview_unavailable": "Pratinjau tidak tersedia untuk tipe file ini. Gunakan tombol unduh.",
+    "download_material": "Unduh file"
   },
   "profile": {
     "title": "Profil Anda",
@@ -197,7 +201,20 @@
     "edit": "Edit",
     "result_deleted": "Hasil berhasil dihapus.",
     "result_delete_failed": "Tidak dapat menghapus hasil ini.",
-    "result_delete_confirm": "Hapus hasil tes ini secara permanen?"
+    "result_delete_confirm": "Hapus hasil tes ini secara permanen?",
+    "manage_materials": "Materi pelatihan",
+    "manage_materials_help": "Lampirkan berkas yang disimpan di folder uploads agar peserta dapat mengaksesnya langsung.",
+    "primary_course_file": "Berkas utama kursus",
+    "primary_course_file_hint": "Berkas ini selalu ditampilkan bersama materi tambahan.",
+    "no_materials": "Belum ada materi tambahan yang ditautkan.",
+    "material_title": "Nama tampilan",
+    "material_path": "Lokasi berkas atau URL",
+    "add_material": "Tambahkan materi",
+    "material_added": "Materi berhasil ditambahkan ke kursus.",
+    "material_deleted": "Materi berhasil dihapus dari kursus.",
+    "material_required": "Isi nama dan lokasi berkas.",
+    "material_not_found": "Materi yang dipilih tidak ditemukan.",
+    "confirm_delete": "Yakin ingin menghapus materi ini?"
   },
   "alerts": {
     "course_not_found": "Kursus yang dipilih tidak ditemukan.",

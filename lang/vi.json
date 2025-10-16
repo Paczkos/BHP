@@ -81,7 +81,11 @@
     "score": "Điểm",
     "status_passed": "Đạt",
     "status_failed": "Không đạt",
-    "download": "Tải xuống"
+    "download": "Tải xuống",
+    "no_materials": "Chưa có tài liệu đào tạo nào được thêm.",
+    "primary_material": "Tài liệu chính",
+    "material_preview_unavailable": "Không thể xem trước loại tệp này. Vui lòng sử dụng nút tải xuống.",
+    "download_material": "Tải tệp"
   },
   "profile": {
     "title": "Hồ sơ của bạn",
@@ -197,7 +201,20 @@
     "edit": "Chỉnh sửa",
     "result_deleted": "Đã xóa kết quả thành công.",
     "result_delete_failed": "Không thể xóa kết quả này.",
-    "result_delete_confirm": "Xóa vĩnh viễn kết quả bài kiểm tra này?"
+    "result_delete_confirm": "Xóa vĩnh viễn kết quả bài kiểm tra này?",
+    "manage_materials": "Tài liệu đào tạo",
+    "manage_materials_help": "Liên kết các tệp trong thư mục uploads để học viên truy cập ngay lập tức.",
+    "primary_course_file": "Tệp chính của khóa học",
+    "primary_course_file_hint": "Tệp này luôn hiển thị cùng với các tài liệu bổ sung.",
+    "no_materials": "Chưa liên kết tài liệu bổ sung nào.",
+    "material_title": "Tên hiển thị",
+    "material_path": "Đường dẫn tệp hoặc URL",
+    "add_material": "Thêm tài liệu",
+    "material_added": "Đã thêm tài liệu vào khóa học.",
+    "material_deleted": "Đã xóa tài liệu khỏi khóa học.",
+    "material_required": "Vui lòng nhập tên và đường dẫn tệp.",
+    "material_not_found": "Không tìm thấy tài liệu đã chọn.",
+    "confirm_delete": "Bạn có chắc chắn muốn xóa tài liệu này không?"
   },
   "alerts": {
     "course_not_found": "Không tìm thấy khóa học đã chọn.",

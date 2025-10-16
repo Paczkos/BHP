@@ -81,7 +81,11 @@
     "score": "Wynik",
     "status_passed": "Zdane",
     "status_failed": "Niezdane",
-    "download": "Pobierz"
+    "download": "Pobierz",
+    "no_materials": "Nie dodano jeszcze materiałów szkoleniowych.",
+    "primary_material": "Materiał główny",
+    "material_preview_unavailable": "Podgląd nie jest dostępny dla tego typu pliku. Użyj przycisku pobierania.",
+    "download_material": "Pobierz plik"
   },
   "profile": {
     "title": "Twoje dane",
@@ -197,7 +201,20 @@
     "edit": "Edytuj",
     "result_deleted": "Wynik został usunięty.",
     "result_delete_failed": "Nie udało się usunąć wyniku.",
-    "result_delete_confirm": "Czy na pewno trwale usunąć ten wynik testu?"
+    "result_delete_confirm": "Czy na pewno trwale usunąć ten wynik testu?",
+    "manage_materials": "Materiały szkoleniowe",
+    "manage_materials_help": "Podlinkuj pliki znajdujące się w katalogu uploads, aby kursanci mieli do nich natychmiastowy dostęp.",
+    "primary_course_file": "Podstawowy plik kursu",
+    "primary_course_file_hint": "Ten plik jest wyświetlany razem z dodatkowymi materiałami.",
+    "no_materials": "Nie dodano jeszcze dodatkowych materiałów.",
+    "material_title": "Nazwa wyświetlana",
+    "material_path": "Ścieżka pliku lub adres URL",
+    "add_material": "Dodaj materiał",
+    "material_added": "Materiał został dodany do kursu.",
+    "material_deleted": "Materiał został usunięty z kursu.",
+    "material_required": "Podaj nazwę oraz ścieżkę pliku.",
+    "material_not_found": "Nie znaleziono wskazanego materiału.",
+    "confirm_delete": "Czy na pewno chcesz usunąć ten materiał?"
   },
   "alerts": {
     "course_not_found": "Wybrane szkolenie nie zostało znalezione.",

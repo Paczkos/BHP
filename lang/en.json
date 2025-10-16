@@ -81,7 +81,11 @@
     "score": "Score",
     "status_passed": "Passed",
     "status_failed": "Failed",
-    "download": "Download"
+    "download": "Download",
+    "no_materials": "No training materials have been added yet.",
+    "primary_material": "Primary material",
+    "material_preview_unavailable": "Preview unavailable for this file type. Use the download button.",
+    "download_material": "Download file"
   },
   "profile": {
     "title": "Your profile",
@@ -197,7 +201,20 @@
     "edit": "Edit",
     "result_deleted": "Result removed successfully.",
     "result_delete_failed": "We couldn't remove this result.",
-    "result_delete_confirm": "Delete this test result permanently?"
+    "result_delete_confirm": "Delete this test result permanently?",
+    "manage_materials": "Training materials",
+    "manage_materials_help": "Link files stored in the uploads directory so learners can access them instantly.",
+    "primary_course_file": "Primary course file",
+    "primary_course_file_hint": "This file is shown alongside the additional materials.",
+    "no_materials": "No additional materials have been linked yet.",
+    "material_title": "Display name",
+    "material_path": "File path or URL",
+    "add_material": "Add material",
+    "material_added": "Material added to the course.",
+    "material_deleted": "Material removed from the course.",
+    "material_required": "Please provide both a title and a file path.",
+    "material_not_found": "We couldn't find that material entry.",
+    "confirm_delete": "Are you sure you want to remove this material?"
   },
   "alerts": {
     "course_not_found": "Selected course was not found.",
