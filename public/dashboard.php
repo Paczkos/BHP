@@ -16,7 +16,10 @@ $certificates = get_user_certificates($user['id']);
         <a href="#certificates"><?= t('nav.certificates') ?></a>
     </aside>
     <section class="content">
-        <h1><?= t('dashboard.welcome', ['name' => $user['first_name']]) ?></h1>
+        <div class="dashboard-heading">
+            <h1><?= t('dashboard.welcome', ['name' => $user['first_name']]) ?></h1>
+            <a class="btn btn-outline" href="profile.php"><?= t('profile.edit_button') ?></a>
+        </div>
         <?php if ($msg = flash('success')): ?>
             <div class="alert"><?= $msg ?></div>
         <?php endif; ?>

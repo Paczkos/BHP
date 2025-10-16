@@ -15,6 +15,7 @@
     "logout": "Đăng xuất",
     "register": "Đăng ký",
     "dashboard": "Bảng điều khiển",
+    "profile": "Hồ sơ",
     "courses": "Khóa học",
     "tests": "Bài kiểm tra",
     "certificates": "Chứng chỉ"
@@ -78,6 +79,21 @@
     "status_passed": "Đạt",
     "status_failed": "Không đạt",
     "download": "Tải xuống"
+  },
+  "profile": {
+    "title": "Hồ sơ của bạn",
+    "subtitle": "Cập nhật thông tin cá nhân và ngôn ngữ ưa thích của bạn.",
+    "edit_button": "Chỉnh sửa hồ sơ",
+    "save_button": "Lưu thay đổi",
+    "password_section_title": "Đổi mật khẩu",
+    "password_section_help": "Để trống nếu bạn muốn giữ nguyên mật khẩu hiện tại.",
+    "updated_success": "Cập nhật hồ sơ thành công.",
+    "update_failed": "Không thể lưu thay đổi. Vui lòng thử lại.",
+    "error_first_name": "Vui lòng nhập tên.",
+    "error_last_name": "Vui lòng nhập họ.",
+    "error_document": "Vui lòng nhập số giấy tờ.",
+    "error_email": "Vui lòng nhập địa chỉ email hợp lệ.",
+    "error_password_length": "Mật khẩu phải có ít nhất 8 ký tự."
   },
   "test": {
     "heading": "Bài kiểm tra kiến thức",

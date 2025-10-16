@@ -15,6 +15,7 @@
     "logout": "Wyloguj",
     "register": "Zarejestruj",
     "dashboard": "Panel",
+    "profile": "Profil",
     "courses": "Szkolenia",
     "tests": "Testy",
     "certificates": "Certyfikaty"
@@ -78,6 +79,21 @@
     "status_passed": "Zdane",
     "status_failed": "Niezdane",
     "download": "Pobierz"
+  },
+  "profile": {
+    "title": "Twoje dane",
+    "subtitle": "Zaktualizuj informacje profilu i preferencje językowe.",
+    "edit_button": "Edytuj profil",
+    "save_button": "Zapisz zmiany",
+    "password_section_title": "Zmień hasło",
+    "password_section_help": "Pozostaw pola puste, aby zachować dotychczasowe hasło.",
+    "updated_success": "Profil został zaktualizowany.",
+    "update_failed": "Nie udało się zapisać zmian. Spróbuj ponownie.",
+    "error_first_name": "Podaj imię.",
+    "error_last_name": "Podaj nazwisko.",
+    "error_document": "Podaj numer dokumentu.",
+    "error_email": "Podaj poprawny adres e-mail.",
+    "error_password_length": "Hasło musi mieć co najmniej 8 znaków."
   },
   "test": {
     "heading": "Test wiedzy",

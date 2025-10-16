@@ -57,9 +57,9 @@ if (!defined('MAIL_FROM')) {
 }
 
 if (!defined('ADMIN_DEFAULT_EMAIL')) {
-    define('ADMIN_DEFAULT_EMAIL', config_env('ADMIN_DEFAULT_EMAIL', 'admin@opus7.pl'));
+    define('ADMIN_DEFAULT_EMAIL', config_env('ADMIN_DEFAULT_EMAIL', 'admin@agatgroup.pl'));
 }
 
 if (!defined('ADMIN_DEFAULT_PASSWORD_HASH')) {
-    define('ADMIN_DEFAULT_PASSWORD_HASH', config_env('ADMIN_DEFAULT_PASSWORD_HASH', '$2y$12$u6bCnhBk2z3CxyrsxA3kWONYCVrXfOkGQnkP5pHT4USJh0AWRjvQO'));
+    define('ADMIN_DEFAULT_PASSWORD_HASH', config_env('ADMIN_DEFAULT_PASSWORD_HASH', '$2y$12$C26FRtP5Lgovzg74Xo7BzuOf9GGvLusOnZRTfn9/VxtXG4.9Pd.7y'));
 }

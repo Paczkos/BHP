@@ -11,6 +11,24 @@ function find_user_by_email(string $email): ?array
     return $user ?: null;
 }
 
+function user_email_taken(string $email, int $excludeUserId = 0): bool
+{
+    $pdo = get_db_connection();
+    $email = strtolower($email);
+    if ($excludeUserId > 0) {
+        $stmt = $pdo->prepare('SELECT id FROM users WHERE email = :email AND id <> :id LIMIT 1');
+        $stmt->execute([
+            'email' => $email,
+            'id' => $excludeUserId,
+        ]);
+    } else {
+        $stmt = $pdo->prepare('SELECT id FROM users WHERE email = :email LIMIT 1');
+        $stmt->execute(['email' => $email]);
+    }
+
+    return (bool) $stmt->fetchColumn();
+}
+
 function register_user(array $data): bool
 {
     $pdo = get_db_connection();
@@ -23,6 +41,32 @@ function register_user(array $data): bool
         'email' => strtolower($data['email']),
         'password_hash' => password_hash($data['password'], PASSWORD_DEFAULT),
         'language' => $data['language'] ?? 'pl',
+    ]);
+}
+
+function update_user_profile(int $userId, array $data): bool
+{
+    $pdo = get_db_connection();
+    $stmt = $pdo->prepare('UPDATE users SET first_name = :first_name, last_name = :last_name, passport_or_pesel = :document, email = :email, language = :language WHERE id = :id');
+
+    return $stmt->execute([
+        'first_name' => $data['first_name'],
+        'last_name' => $data['last_name'],
+        'document' => $data['passport_or_pesel'],
+        'email' => strtolower($data['email']),
+        'language' => $data['language'] ?? 'pl',
+        'id' => $userId,
+    ]);
+}
+
+function update_user_password(int $userId, string $password): bool
+{
+    $pdo = get_db_connection();
+    $stmt = $pdo->prepare('UPDATE users SET password_hash = :password_hash WHERE id = :id');
+
+    return $stmt->execute([
+        'password_hash' => password_hash($password, PASSWORD_DEFAULT),
+        'id' => $userId,
     ]);
 }
 

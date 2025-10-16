@@ -15,6 +15,7 @@
     "logout": "Keluar",
     "register": "Daftar",
     "dashboard": "Dasbor",
+    "profile": "Profil",
     "courses": "Kursus",
     "tests": "Tes",
     "certificates": "Sertifikat"
@@ -78,6 +79,21 @@
     "status_passed": "Lulus",
     "status_failed": "Tidak lulus",
     "download": "Unduh"
+  },
+  "profile": {
+    "title": "Profil Anda",
+    "subtitle": "Perbarui data pribadi dan preferensi bahasa Anda.",
+    "edit_button": "Ubah profil",
+    "save_button": "Simpan perubahan",
+    "password_section_title": "Ubah kata sandi",
+    "password_section_help": "Biarkan kosong untuk mempertahankan kata sandi saat ini.",
+    "updated_success": "Profil berhasil diperbarui.",
+    "update_failed": "Perubahan tidak dapat disimpan. Coba lagi.",
+    "error_first_name": "Masukkan nama depan.",
+    "error_last_name": "Masukkan nama belakang.",
+    "error_document": "Masukkan nomor dokumen.",
+    "error_email": "Masukkan alamat email yang valid.",
+    "error_password_length": "Kata sandi minimal harus 8 karakter."
   },
   "test": {
     "heading": "Tes pengetahuan",

@@ -37,6 +37,7 @@ $lang = detect_language();
                 </div>
                 <div class="nav-actions">
                     <?php if (is_logged_in()): ?>
+                        <a href="profile.php" class="btn btn-link"><?= t('nav.profile') ?></a>
                         <a href="dashboard.php" class="btn btn-outline"><?= t('nav.dashboard') ?></a>
                         <a href="logout.php" class="btn btn-primary"><?= t('nav.logout') ?></a>
                     <?php else: ?>

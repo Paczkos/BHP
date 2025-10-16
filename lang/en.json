@@ -15,6 +15,7 @@
     "logout": "Log out",
     "register": "Register",
     "dashboard": "Dashboard",
+    "profile": "Profile",
     "courses": "Courses",
     "tests": "Tests",
     "certificates": "Certificates"
@@ -78,6 +79,21 @@
     "status_passed": "Passed",
     "status_failed": "Failed",
     "download": "Download"
+  },
+  "profile": {
+    "title": "Your profile",
+    "subtitle": "Update your personal details and language preferences.",
+    "edit_button": "Edit profile",
+    "save_button": "Save changes",
+    "password_section_title": "Change password",
+    "password_section_help": "Leave the fields blank to keep your current password.",
+    "updated_success": "Profile updated successfully.",
+    "update_failed": "We couldn't save your changes. Try again.",
+    "error_first_name": "Please enter your first name.",
+    "error_last_name": "Please enter your last name.",
+    "error_document": "Please enter your document number.",
+    "error_email": "Please enter a valid email address.",
+    "error_password_length": "Password must be at least 8 characters long."
   },
   "test": {
     "heading": "Knowledge test",

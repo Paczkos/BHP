@@ -18,7 +18,7 @@ Kompletny szkielet aplikacji szkoleniowej BHP dla cudzoziemców firmowany przez 
 
 ## Konta testowe
 
-- Administrator: `admin@opus7.pl` / `Admin!123` (konto zostaje automatycznie utworzone lub zaktualizowane przy pierwszej próbie logowania).
+- Administrator: `admin@agatgroup.pl` / `AgatGroup#2024` (konto zostaje automatycznie utworzone lub zaktualizowane przy pierwszej próbie logowania).
 - Kursanci: `anna@example.com`, `hoa@example.com`, `ivan@example.com` (hasło `Password123!`).
 
 ## Funkcjonalności
@@ -26,6 +26,7 @@ Kompletny szkielet aplikacji szkoleniowej BHP dla cudzoziemców firmowany przez 
 - Wielojęzyczność z plikami JSON.
 - Rejestracja i logowanie pracowników.
 - Panel kursanta z materiałami, testami i certyfikatami PDF.
+- Edycja profilu kursanta (dane osobowe, język, hasło).
 - Panel administratora (użytkownicy, kursy, pytania, wyniki, certyfikaty).
 - Generowanie certyfikatów PDF oraz przesyłanie podpisanych skanów.
 - Tryb ciemny (localStorage) i automatyczne powiadomienia e-mail (funkcja `mail`).

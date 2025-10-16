@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS certificates (
 
 -- Sample data
 INSERT INTO admins (email, password_hash) VALUES
-('admin@example.com', '$2y$12$nKatfOCzynv1Ti9RR0JOyuEBH8ymZ563mYg1Q8JM2yMIU843FezeC');
+('admin@agatgroup.pl', '$2y$12$C26FRtP5Lgovzg74Xo7BzuOf9GGvLusOnZRTfn9/VxtXG4.9Pd.7y');
 
 INSERT INTO users (first_name, last_name, passport_or_pesel, email, password_hash, language) VALUES
 ('Anna', 'Kowalska', 'AB1234567', 'anna@example.com', '$2y$12$nKatfOCzynv1Ti9RR0JOyuEBH8ymZ563mYg1Q8JM2yMIU843FezeC', 'pl'),
