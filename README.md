@@ -12,7 +12,7 @@ Kompletny szkielet aplikacji szkoleniowej BHP dla cudzoziemców. Projekt zawiera
 
 1. Sklonuj repozytorium do katalogu dostępnego przez serwer WWW (np. `htdocs/BHP`).
 2. Utwórz bazę danych MySQL o nazwie `serwer244157_bhp` i zaimportuj plik `sql/schema.sql`.
-3. Dostosuj dane logowania do bazy w `includes/config.php` lub ustaw zmienne środowiskowe (`DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`).
+3. Domyślne połączenie korzysta z danych hostingu LH.pl (`DB_USER=serwer244157_bhp`, `DB_PASS=PAczkos19861986#`). W razie potrzeby zmodyfikuj je w `includes/config.php` lub ustaw zmienne środowiskowe (`DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`).
 4. Upewnij się, że katalogi `uploads/` oraz `certificates/` mają prawa do zapisu.
 5. Uruchom aplikację przez `http://localhost/BHP/public` (panel kursanta) oraz `http://localhost/BHP/admin` (panel administratora).
 

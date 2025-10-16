@@ -17,11 +17,11 @@ if (!defined('DB_NAME')) {
 }
 
 if (!defined('DB_USER')) {
-    define('DB_USER', config_env('DB_USER', 'root'));
+    define('DB_USER', config_env('DB_USER', 'serwer244157_bhp'));
 }
 
 if (!defined('DB_PASS')) {
-    define('DB_PASS', config_env('DB_PASS', ''));
+    define('DB_PASS', config_env('DB_PASS', 'PAczkos19861986#'));
 }
 
 // Application configuration
