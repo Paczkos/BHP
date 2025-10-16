@@ -13,7 +13,7 @@ if (!defined('DB_HOST')) {
 }
 
 if (!defined('DB_NAME')) {
-    define('DB_NAME', config_env('DB_NAME', 'bhp_platform'));
+    define('DB_NAME', config_env('DB_NAME', 'serwer244157_bhp'));
 }
 
 if (!defined('DB_USER')) {
