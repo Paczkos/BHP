@@ -32,44 +32,102 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
     }
 
-    flash('success', t('admin.questions'));
+    flash('success', t('admin.question_created'));
+    redirect('questions.php?course_id=' . $courseId);
 }
 
 $questions = $pdo->prepare('SELECT * FROM questions WHERE course_id = :course_id ORDER BY id DESC');
 $questions->execute(['course_id' => $courseId]);
 $questions = $questions->fetchAll();
+$answersByQuestion = [];
+if (!empty($questions)) {
+    $placeholders = implode(',', array_fill(0, count($questions), '?'));
+    $questionIds = array_column($questions, 'id');
+    $answersStmt = $pdo->prepare("SELECT question_id, answer_text, is_correct FROM answers WHERE question_id IN ($placeholders) ORDER BY id ASC");
+    $answersStmt->execute($questionIds);
+    foreach ($answersStmt as $answerRow) {
+        $answersByQuestion[$answerRow['question_id']][] = $answerRow;
+    }
+}
 ?>
-<h1><?= t('admin.questions') ?> – <?= htmlspecialchars($course['title']) ?></h1>
+<section class="admin-page-header">
+    <div>
+        <p class="admin-eyebrow"><?= t('admin.questions') ?></p>
+        <h1><?= t('admin.questions') ?> – <?= htmlspecialchars($course['title']) ?></h1>
+        <p class="admin-page-subtitle"><?= t('admin.questions_subtitle') ?></p>
+    </div>
+    <div class="admin-quick-links">
+        <a class="btn btn-outline" href="courses.php"><?= t('admin.courses') ?></a>
+    </div>
+</section>
+
 <?php if ($message = flash('success')): ?>
-    <div class="alert"><?= $message ?></div>
+    <div class="alert success"><?= $message ?></div>
 <?php endif; ?>
-<div class="card" style="margin-bottom:2rem;">
-    <h2>Dodaj pytanie</h2>
-    <form method="post">
-        <div>
-            <label>Pytanie</label>
-            <input type="text" name="question_text" required>
+
+<div class="card admin-card admin-card--form">
+    <div class="admin-card-header">
+        <h2><?= t('admin.add_question') ?></h2>
+        <p><?= t('admin.add_question_help') ?></p>
+    </div>
+    <form method="post" class="form-vertical">
+        <div class="form-field">
+            <label for="question-text"><?= t('admin.question_label') ?></label>
+            <textarea id="question-text" name="question_text" rows="3" required></textarea>
         </div>
-        <div>
-            <label>Odpowiedzi</label>
+        <div class="form-grid form-grid--answers">
             <?php for ($i = 0; $i < 4; $i++): ?>
-                <input type="text" name="answers[]" required placeholder="Odpowiedź <?= $i + 1 ?>">
+                <div class="form-field">
+                    <label for="answer-<?= $i ?>"><?= sprintf(t('admin.answer_label'), $i + 1) ?></label>
+                    <input type="text" id="answer-<?= $i ?>" name="answers[]" required placeholder="<?= sprintf(t('admin.answer_placeholder'), $i + 1) ?>">
+                </div>
             <?php endfor; ?>
         </div>
-        <div>
-            <label>Poprawna odpowiedź (0-3)</label>
-            <input type="number" name="correct_answer" min="0" max="3" value="0">
+        <div class="form-field">
+            <label for="correct-answer"><?= t('admin.correct_answer_label') ?></label>
+            <select id="correct-answer" name="correct_answer">
+                <?php for ($i = 0; $i < 4; $i++): ?>
+                    <option value="<?= $i ?>"><?= sprintf(t('admin.answer_label'), $i + 1) ?></option>
+                <?php endfor; ?>
+            </select>
+            <p class="form-hint"><?= t('admin.correct_answer_hint') ?></p>
         </div>
-        <button class="btn btn-primary" type="submit"><?= t('admin.save') ?></button>
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit"><?= t('admin.save') ?></button>
+        </div>
     </form>
 </div>
-<div class="card">
-    <h2>Istniejące pytania</h2>
-    <ol>
-        <?php foreach ($questions as $question): ?>
-            <li><?= htmlspecialchars($question['question_text']) ?></li>
-        <?php endforeach; ?>
-    </ol>
+
+<div class="card admin-card">
+    <div class="admin-card-header">
+        <h2><?= t('admin.existing_questions') ?></h2>
+        <p><?= t('admin.question_list_caption') ?></p>
+    </div>
+    <?php if (empty($questions)): ?>
+        <p class="empty-state"><?= t('admin.no_questions') ?></p>
+    <?php else: ?>
+        <ol class="question-list">
+            <?php foreach ($questions as $question): ?>
+                <li>
+                    <div class="question-item">
+                        <span class="question-text"><?= htmlspecialchars($question['question_text']) ?></span>
+                        <?php if (!empty($answersByQuestion[$question['id']])): ?>
+                            <ul class="question-answers">
+                                <?php foreach ($answersByQuestion[$question['id']] as $answer): ?>
+                                    <li class="<?= $answer['is_correct'] ? 'question-answer--correct' : '' ?>">
+                                        <span><?= htmlspecialchars($answer['answer_text']) ?></span>
+                                        <?php if ($answer['is_correct']): ?>
+                                            <span class="status-pill status-pill--success"><?= t('admin.correct_answer_badge') ?></span>
+                                        <?php endif; ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    <?php endif; ?>
 </div>
 <?php
 require_once __DIR__ . '/footer.php';

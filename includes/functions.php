@@ -61,6 +61,11 @@ function current_user(): ?array
     return $_SESSION['user'] ?? null;
 }
 
+function current_admin(): ?array
+{
+    return $_SESSION['admin'] ?? null;
+}
+
 function require_login(): void
 {
     if (!is_logged_in()) {
