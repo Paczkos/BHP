@@ -1,13 +1,14 @@
 {
   "app": {
-    "title": "Nền tảng đào tạo an toàn lao động",
-    "description": "Khóa đào tạo an toàn lao động trực tuyến với giao diện đa ngôn ngữ cho lao động nước ngoài.",
+    "title": "AGAT GROUP | Nền tảng đào tạo an toàn lao động",
+    "description": "Nền tảng chính thức của AGAT GROUP Sp. z o.o. dành cho chương trình đào tạo an toàn lao động đa ngôn ngữ trực tuyến.",
     "get_started": "Bắt đầu"
   },
   "branding": {
-    "tagline": "Đào tạo an toàn trực tuyến cho mọi nơi làm việc",
+    "tagline": "Nền tảng đào tạo chính thức của AGAT GROUP Sp. z o.o.",
     "language_switcher": "Ngôn ngữ",
-    "dark_mode": "Chế độ tối"
+    "dark_mode": "Chế độ tối",
+    "footer_rights": "Bảo lưu mọi quyền."
   },
   "nav": {
     "login": "Đăng nhập",
@@ -19,24 +20,30 @@
     "certificates": "Chứng chỉ"
   },
   "landing": {
-    "hero_badge": "Khóa huấn luyện ATLĐ được chứng nhận",
-    "hero_title": "Hội nhập an toàn cho mọi nhân viên",
-    "hero_subtitle": "Truy cập khóa học, làm bài kiểm tra và tải chứng chỉ bằng ngôn ngữ bạn chọn.",
+    "hero_badge": "AGAT GROUP • An toàn",
+    "hero_title": "Chuẩn an toàn theo tiêu chuẩn AGAT GROUP",
+    "hero_subtitle": "Trung tâm học tập dành cho nhân viên và nhà thầu AGAT GROUP Sp. z o.o., hỗ trợ nhiều ngôn ngữ.",
     "cta_login": "Đăng nhập",
     "cta_register": "Tạo tài khoản",
     "hero_card_title": "Những gì bạn nhận được từ nền tảng",
     "feature_courses": "Tài liệu học theo ngôn ngữ",
     "feature_tests": "Bài kiểm tra trắc nghiệm với câu hỏi ngẫu nhiên",
     "feature_certificates": "Chứng chỉ PDF tạo tự động",
-    "section_title": "Vì sao chọn nền tảng BHP?",
+    "section_title": "Vì sao AGAT GROUP đầu tư vào nền tảng BHP?",
     "feature_courses_desc": "Video, slide và tài liệu PDF được chuẩn bị cho lao động quốc tế.",
     "feature_tests_desc": "Ngân hàng câu hỏi bằng 5 ngôn ngữ với chấm điểm tức thì.",
     "feature_certificates_desc": "Mỗi lần đạt tạo ra chứng chỉ PDF có mã số sẵn sàng tải xuống.",
     "feature_admin_title": "Bảng điều khiển quản trị",
-    "feature_admin_desc": "Quản lý khóa học, câu hỏi, chứng chỉ và báo cáo tại một nơi.",
+    "feature_admin_desc": "Đội ngũ an toàn AGAT GROUP quản lý toàn bộ khóa học, bài kiểm tra, chứng chỉ và báo cáo.",
     "stat_users": "Nhân viên đã huấn luyện",
     "stat_courses": "Khóa học hiện có",
-    "stat_languages": "Ngôn ngữ hỗ trợ"
+    "stat_languages": "Ngôn ngữ hỗ trợ",
+    "company_title": "AGAT GROUP Sp. z o.o.",
+    "company_desc": "Hơn 30 năm qua AGAT GROUP đồng hành cùng các dự án công nghiệp và logistics. Nền tảng BHP bảo đảm chuẩn an toàn thống nhất cho các nhóm quốc tế và đối tác.",
+    "company_point_one": "Tiêu chuẩn an toàn phù hợp với quy trình và yêu cầu khách hàng của AGAT GROUP.",
+    "company_point_two": "Tài liệu do các chuyên gia an toàn và huấn luyện viên nội bộ AGAT GROUP biên soạn.",
+    "company_point_three": "Luôn có điều phối viên hỗ trợ và báo cáo tiến độ rõ ràng cho bộ phận nhân sự.",
+    "company_contact": "Liên hệ đội ngũ an toàn AGAT GROUP để xây dựng chương trình huấn luyện riêng cho dự án của bạn."
   },
   "auth": {
     "login_required": "Vui lòng đăng nhập để tiếp tục.",

@@ -26,7 +26,7 @@ if (!defined('DB_PASS')) {
 
 // Application configuration
 if (!defined('APP_NAME')) {
-    define('APP_NAME', config_env('APP_NAME', 'Platforma BHP'));
+    define('APP_NAME', config_env('APP_NAME', 'AGAT GROUP – Platforma BHP'));
 }
 
 if (!function_exists('config_default_app_url')) {

@@ -65,6 +65,19 @@ require_once __DIR__ . '/../includes/header.php';
         </div>
     </div>
 </section>
+
+<section class="container company-section">
+    <div class="company-card">
+        <h2><?= t('landing.company_title') ?></h2>
+        <p><?= t('landing.company_desc') ?></p>
+        <ul class="company-list">
+            <li><?= t('landing.company_point_one') ?></li>
+            <li><?= t('landing.company_point_two') ?></li>
+            <li><?= t('landing.company_point_three') ?></li>
+        </ul>
+        <p class="company-contact"><?= t('landing.company_contact') ?></p>
+    </div>
+</section>
 <?php
 require_once __DIR__ . '/../includes/footer.php';
 ?>

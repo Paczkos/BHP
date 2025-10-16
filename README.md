@@ -1,6 +1,6 @@
-# Platforma BHP
+# AGAT GROUP – Platforma BHP
 
-Kompletny szkielet aplikacji szkoleniowej BHP dla cudzoziemców. Projekt zawiera wielojęzyczny interfejs (PL, EN, RU, ID, VI), rejestrację użytkowników, panel kursanta oraz panel administratora z zarządzaniem kursami, pytaniami i certyfikatami.
+Kompletny szkielet aplikacji szkoleniowej BHP dla cudzoziemców firmowany przez AGAT GROUP Sp. z o.o. Projekt zawiera wielojęzyczny interfejs (PL, EN, RU, ID, VI), rejestrację użytkowników, panel kursanta oraz panel administratora z zarządzaniem kursami, pytaniami i certyfikatami.
 
 ## Wymagania
 

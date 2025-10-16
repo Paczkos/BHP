@@ -1,13 +1,14 @@
 {
   "app": {
-    "title": "Platform Pelatihan K3",
-    "description": "Pelatihan K3 online lengkap dengan dukungan multibahasa untuk pekerja asing.",
+    "title": "AGAT GROUP | Platform Pelatihan K3",
+    "description": "Lingkungan resmi AGAT GROUP Sp. z o.o. untuk pelatihan keselamatan kerja multibahasa secara daring.",
     "get_started": "Mulai"
   },
   "branding": {
-    "tagline": "Pelatihan keselamatan online untuk setiap lokasi kerja",
+    "tagline": "Platform pelatihan resmi AGAT GROUP Sp. z o.o.",
     "language_switcher": "Bahasa",
-    "dark_mode": "Mode gelap"
+    "dark_mode": "Mode gelap",
+    "footer_rights": "Hak cipta dilindungi."
   },
   "nav": {
     "login": "Masuk",
@@ -19,24 +20,30 @@
     "certificates": "Sertifikat"
   },
   "landing": {
-    "hero_badge": "Pelatihan K3 tersertifikasi",
-    "hero_title": "Onboarding aman untuk setiap karyawan",
-    "hero_subtitle": "Akses kursus, selesaikan tes, dan unduh sertifikat dalam bahasa pilihan Anda.",
+    "hero_badge": "AGAT GROUP • K3",
+    "hero_title": "Keunggulan keselamatan ala AGAT GROUP",
+    "hero_subtitle": "Pusat pembelajaran terpadu bagi karyawan dan kontraktor AGAT GROUP Sp. z o.o., tersedia dalam banyak bahasa.",
     "cta_login": "Masuk",
     "cta_register": "Buat akun",
     "hero_card_title": "Apa saja yang tersedia di platform?",
     "feature_courses": "Materi pembelajaran sesuai bahasa",
     "feature_tests": "Tes pilihan ganda dengan soal acak",
     "feature_certificates": "Sertifikat PDF otomatis",
-    "section_title": "Mengapa memilih Platform BHP?",
+    "section_title": "Mengapa AGAT GROUP mengandalkan Platform K3?",
     "feature_courses_desc": "Video, presentasi, dan panduan PDF yang disiapkan untuk pekerja internasional.",
     "feature_tests_desc": "Bank soal dalam lima bahasa dengan penilaian instan.",
     "feature_certificates_desc": "Setiap kelulusan menghasilkan sertifikat PDF bernomor siap diunduh.",
     "feature_admin_title": "Panel administrator",
-    "feature_admin_desc": "Kelola kursus, soal, sertifikat, dan ekspor dalam satu tempat.",
+    "feature_admin_desc": "Kendali penuh tim K3 AGAT GROUP atas kursus, ujian, sertifikat, dan pelaporan.",
     "stat_users": "Pekerja yang dilatih",
     "stat_courses": "Kursus tersedia",
-    "stat_languages": "Bahasa didukung"
+    "stat_languages": "Bahasa didukung",
+    "company_title": "AGAT GROUP Sp. z o.o.",
+    "company_desc": "Selama lebih dari 30 tahun AGAT GROUP mendukung proyek industri dan logistik. Platform K3 memastikan standar keselamatan yang konsisten bagi tim dan mitra internasional.",
+    "company_point_one": "Standar keselamatan yang disesuaikan dengan proses AGAT GROUP dan tuntutan pelanggan.",
+    "company_point_two": "Materi yang dikembangkan oleh pakar K3 serta pelatih lapangan AGAT GROUP.",
+    "company_point_three": "Dukungan berkelanjutan dari koordinator dengan laporan kemajuan yang jelas untuk HR.",
+    "company_contact": "Hubungi tim K3 AGAT GROUP untuk menyesuaikan pelatihan dengan proyek Anda."
   },
   "auth": {
     "login_required": "Silakan masuk untuk melanjutkan.",

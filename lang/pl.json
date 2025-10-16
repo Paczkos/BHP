@@ -1,13 +1,14 @@
 {
   "app": {
-    "title": "Platforma Szkoleniowa BHP",
-    "description": "Kompletne szkolenia BHP online z wielojęzycznym interfejsem dla cudzoziemców.",
+    "title": "AGAT GROUP | Platforma Szkoleniowa BHP",
+    "description": "Oficjalna platforma AGAT GROUP Sp. z o.o. do prowadzenia wielojęzycznych szkoleń BHP online.",
     "get_started": "Rozpocznij"
   },
   "branding": {
-    "tagline": "Szkolenia online dla bezpiecznej pracy w każdej lokalizacji",
+    "tagline": "Oficjalna platforma szkoleniowa AGAT GROUP Sp. z o.o.",
     "language_switcher": "Język",
-    "dark_mode": "Tryb ciemny"
+    "dark_mode": "Tryb ciemny",
+    "footer_rights": "Wszelkie prawa zastrzeżone."
   },
   "nav": {
     "login": "Zaloguj się",
@@ -19,24 +20,30 @@
     "certificates": "Certyfikaty"
   },
   "landing": {
-    "hero_badge": "Certyfikowane szkolenia BHP",
-    "hero_title": "Bezpieczne wdrożenie każdego pracownika",
-    "hero_subtitle": "Uzyskaj dostęp do kursów, rozwiązuj testy i pobieraj certyfikaty w wybranym języku.",
+    "hero_badge": "AGAT GROUP • BHP",
+    "hero_title": "Bezpieczeństwo w standardzie AGAT GROUP",
+    "hero_subtitle": "Centralna platforma szkoleniowa dla pracowników i podwykonawców AGAT GROUP Sp. z o.o., dostępna w wielu językach.",
     "cta_login": "Zaloguj się",
     "cta_register": "Utwórz konto",
     "hero_card_title": "Co zyskasz wraz z platformą?",
     "feature_courses": "Materiały szkoleniowe dopasowane językowo",
     "feature_tests": "Testy jednokrotnego wyboru z losowaniem pytań",
     "feature_certificates": "Certyfikaty PDF generowane automatycznie",
-    "section_title": "Dlaczego warto wybrać Platformę BHP?",
+    "section_title": "Dlaczego AGAT GROUP rozwija Platformę BHP?",
     "feature_courses_desc": "Wideo, prezentacje i instrukcje PDF przygotowane specjalnie dla pracowników zagranicznych.",
     "feature_tests_desc": "Pytania i odpowiedzi w wielu językach z natychmiastowym sprawdzaniem wyników.",
     "feature_certificates_desc": "Każde zaliczenie to numerowany certyfikat PDF gotowy do wydruku lub podpisu.",
     "feature_admin_title": "Panel administracyjny",
-    "feature_admin_desc": "Pełna kontrola nad kursami, testami, certyfikatami i raportami.",
+    "feature_admin_desc": "Pełna kontrola działu BHP AGAT GROUP nad kursami, testami, certyfikatami i raportami.",
     "stat_users": "Przeszkolonych pracowników",
     "stat_courses": "Dostępnych kursów",
-    "stat_languages": "Obsługiwanych języków"
+    "stat_languages": "Obsługiwanych języków",
+    "company_title": "AGAT GROUP Sp. z o.o.",
+    "company_desc": "Od ponad 30 lat AGAT GROUP wspiera inwestycje przemysłowe i logistyczne. Platforma BHP zapewnia spójne standardy bezpieczeństwa dla międzynarodowych zespołów i partnerów.",
+    "company_point_one": "Standardy bezpieczeństwa dopasowane do procesów AGAT GROUP i wymagań klientów.",
+    "company_point_two": "Materiały tworzone przez ekspertów BHP oraz trenerów operacyjnych spółki.",
+    "company_point_three": "Stałe wsparcie koordynatorów i przejrzyste raporty postępów dla działów HR.",
+    "company_contact": "Skontaktuj się z zespołem BHP AGAT GROUP, aby dopasować szkolenia do projektu."
   },
   "auth": {
     "login_required": "Zaloguj się, aby kontynuować.",

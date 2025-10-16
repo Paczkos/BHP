@@ -1,13 +1,14 @@
 {
   "app": {
-    "title": "Health & Safety Training Platform",
-    "description": "Complete online BHP training with multilingual support for foreign workers.",
+    "title": "AGAT GROUP | BHP Training Platform",
+    "description": "Official AGAT GROUP Sp. z o.o. environment for multilingual workplace safety training.",
     "get_started": "Get started"
   },
   "branding": {
-    "tagline": "Online safety training for every workplace",
+    "tagline": "Official training platform of AGAT GROUP Sp. z o.o.",
     "language_switcher": "Language",
-    "dark_mode": "Dark mode"
+    "dark_mode": "Dark mode",
+    "footer_rights": "All rights reserved."
   },
   "nav": {
     "login": "Log in",
@@ -19,24 +20,30 @@
     "certificates": "Certificates"
   },
   "landing": {
-    "hero_badge": "Certified HSE training",
-    "hero_title": "Safe onboarding for every employee",
-    "hero_subtitle": "Access courses, pass tests and download certificates in your preferred language.",
+    "hero_badge": "AGAT GROUP • Safety",
+    "hero_title": "Safety excellence powered by AGAT GROUP",
+    "hero_subtitle": "A central learning hub for AGAT GROUP employees and contractors, available in multiple languages.",
     "cta_login": "Log in",
     "cta_register": "Create account",
     "hero_card_title": "Everything included in the platform",
     "feature_courses": "Language-matched learning materials",
     "feature_tests": "Multiple-choice exams with randomised questions",
     "feature_certificates": "Instantly generated PDF certificates",
-    "section_title": "Why teams choose the HSE Platform",
+    "section_title": "Why AGAT GROUP relies on the BHP Platform?",
     "feature_courses_desc": "Video lessons, slide decks and PDF manuals tailored for international employees.",
     "feature_tests_desc": "Question banks translated into five languages with instant scoring.",
     "feature_certificates_desc": "Each pass triggers a numbered PDF certificate ready to download.",
     "feature_admin_title": "Administrator cockpit",
-    "feature_admin_desc": "Manage courses, questions, certificates and exports in one place.",
+    "feature_admin_desc": "Full control for the AGAT GROUP safety team over courses, exams, certificates, and reporting.",
     "stat_users": "Workers trained",
     "stat_courses": "Courses available",
-    "stat_languages": "Languages supported"
+    "stat_languages": "Languages supported",
+    "company_title": "AGAT GROUP Sp. z o.o.",
+    "company_desc": "For over 30 years AGAT GROUP has supported industrial and logistics projects. The BHP platform keeps safety standards aligned for our international teams and partners.",
+    "company_point_one": "Safety standards tailored to AGAT GROUP processes and client requirements.",
+    "company_point_two": "Training content curated by AGAT GROUP safety experts and field coaches.",
+    "company_point_three": "Ongoing coordinator support with transparent progress analytics for HR.",
+    "company_contact": "Contact the AGAT GROUP HSE team to tailor training to your project."
   },
   "auth": {
     "login_required": "Please log in to continue.",

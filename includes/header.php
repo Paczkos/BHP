@@ -18,7 +18,11 @@ $lang = detect_language();
     <div class="container">
         <div class="header-inner">
             <a class="brand" href="index.php">
-                <span class="brand-mark">BHP</span>
+                <span class="brand-mark" aria-hidden="true">
+                    <span class="brand-initials">AG</span>
+                    <span class="brand-mark-dot"></span>
+                    <span class="brand-mark-label">BHP</span>
+                </span>
                 <span class="brand-text">
                     <span class="brand-title"><?= APP_NAME ?></span>
                     <span class="brand-tagline"><?= t('branding.tagline') ?></span>
