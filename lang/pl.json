@@ -4,6 +4,11 @@
     "description": "Kompletne szkolenia BHP online z wielojęzycznym interfejsem dla cudzoziemców.",
     "get_started": "Rozpocznij"
   },
+  "branding": {
+    "tagline": "Szkolenia online dla bezpiecznej pracy w każdej lokalizacji",
+    "language_switcher": "Język",
+    "dark_mode": "Tryb ciemny"
+  },
   "nav": {
     "login": "Zaloguj się",
     "logout": "Wyloguj",
@@ -14,10 +19,24 @@
     "certificates": "Certyfikaty"
   },
   "landing": {
+    "hero_badge": "Certyfikowane szkolenia BHP",
     "hero_title": "Bezpieczne wdrożenie każdego pracownika",
     "hero_subtitle": "Uzyskaj dostęp do kursów, rozwiązuj testy i pobieraj certyfikaty w wybranym języku.",
     "cta_login": "Zaloguj się",
-    "cta_register": "Utwórz konto"
+    "cta_register": "Utwórz konto",
+    "hero_card_title": "Co zyskasz wraz z platformą?",
+    "feature_courses": "Materiały szkoleniowe dopasowane językowo",
+    "feature_tests": "Testy jednokrotnego wyboru z losowaniem pytań",
+    "feature_certificates": "Certyfikaty PDF generowane automatycznie",
+    "section_title": "Dlaczego warto wybrać Platformę BHP?",
+    "feature_courses_desc": "Wideo, prezentacje i instrukcje PDF przygotowane specjalnie dla pracowników zagranicznych.",
+    "feature_tests_desc": "Pytania i odpowiedzi w wielu językach z natychmiastowym sprawdzaniem wyników.",
+    "feature_certificates_desc": "Każde zaliczenie to numerowany certyfikat PDF gotowy do wydruku lub podpisu.",
+    "feature_admin_title": "Panel administracyjny",
+    "feature_admin_desc": "Pełna kontrola nad kursami, testami, certyfikatami i raportami.",
+    "stat_users": "Przeszkolonych pracowników",
+    "stat_courses": "Dostępnych kursów",
+    "stat_languages": "Obsługiwanych języków"
   },
   "auth": {
     "login_required": "Zaloguj się, aby kontynuować.",

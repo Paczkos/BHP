@@ -4,6 +4,11 @@
     "description": "Complete online BHP training with multilingual support for foreign workers.",
     "get_started": "Get started"
   },
+  "branding": {
+    "tagline": "Online safety training for every workplace",
+    "language_switcher": "Language",
+    "dark_mode": "Dark mode"
+  },
   "nav": {
     "login": "Log in",
     "logout": "Log out",
@@ -14,10 +19,24 @@
     "certificates": "Certificates"
   },
   "landing": {
+    "hero_badge": "Certified HSE training",
     "hero_title": "Safe onboarding for every employee",
     "hero_subtitle": "Access courses, pass tests and download certificates in your preferred language.",
     "cta_login": "Log in",
-    "cta_register": "Create account"
+    "cta_register": "Create account",
+    "hero_card_title": "Everything included in the platform",
+    "feature_courses": "Language-matched learning materials",
+    "feature_tests": "Multiple-choice exams with randomised questions",
+    "feature_certificates": "Instantly generated PDF certificates",
+    "section_title": "Why teams choose the HSE Platform",
+    "feature_courses_desc": "Video lessons, slide decks and PDF manuals tailored for international employees.",
+    "feature_tests_desc": "Question banks translated into five languages with instant scoring.",
+    "feature_certificates_desc": "Each pass triggers a numbered PDF certificate ready to download.",
+    "feature_admin_title": "Administrator cockpit",
+    "feature_admin_desc": "Manage courses, questions, certificates and exports in one place.",
+    "stat_users": "Workers trained",
+    "stat_courses": "Courses available",
+    "stat_languages": "Languages supported"
   },
   "auth": {
     "login_required": "Please log in to continue.",

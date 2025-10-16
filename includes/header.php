@@ -14,25 +14,34 @@ $lang = detect_language();
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
+<header class="site-header">
     <div class="container">
-        <nav>
-            <div>
-                <strong><?= APP_NAME ?></strong>
+        <div class="header-inner">
+            <a class="brand" href="index.php">
+                <span class="brand-mark">BHP</span>
+                <span class="brand-text">
+                    <span class="brand-title"><?= APP_NAME ?></span>
+                    <span class="brand-tagline"><?= t('branding.tagline') ?></span>
+                </span>
+            </a>
+            <div class="nav-groups">
+                <div class="lang-switcher" aria-label="<?= t('branding.language_switcher') ?>">
+                    <span><?= t('branding.language_switcher') ?></span>
+                    <?php foreach (AVAILABLE_LANGUAGES as $code): ?>
+                        <a href="?lang=<?= $code ?>" data-lang="<?= $code ?>" class="<?= $code === $lang ? 'active' : '' ?>"><?= strtoupper($code) ?></a>
+                    <?php endforeach; ?>
+                </div>
+                <div class="nav-actions">
+                    <?php if (is_logged_in()): ?>
+                        <a href="dashboard.php" class="btn btn-outline"><?= t('nav.dashboard') ?></a>
+                        <a href="logout.php" class="btn btn-primary"><?= t('nav.logout') ?></a>
+                    <?php else: ?>
+                        <a href="login.php" class="btn btn-outline"><?= t('nav.login') ?></a>
+                        <a href="register.php" class="btn btn-primary"><?= t('nav.register') ?></a>
+                    <?php endif; ?>
+                </div>
             </div>
-            <div class="actions">
-                <?php foreach (AVAILABLE_LANGUAGES as $code): ?>
-                    <a href="?lang=<?= $code ?>" data-lang="<?= $code ?>"><?= strtoupper($code) ?></a>
-                <?php endforeach; ?>
-                <?php if (is_logged_in()): ?>
-                    <a href="dashboard.php"><?= t('nav.dashboard') ?></a>
-                    <a href="logout.php"><?= t('nav.logout') ?></a>
-                <?php else: ?>
-                    <a href="login.php"><?= t('nav.login') ?></a>
-                    <a href="register.php" class="btn btn-primary"><?= t('nav.register') ?></a>
-                <?php endif; ?>
-            </div>
-        </nav>
+        </div>
     </div>
 </header>
-<main>
+<main class="page-content">

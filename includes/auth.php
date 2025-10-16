@@ -37,14 +37,59 @@ function authenticate_user(string $email, string $password): bool
     return false;
 }
 
+function seed_default_admin(): void
+{
+    static $seedAttempted = false;
+    if ($seedAttempted) {
+        return;
+    }
+    $seedAttempted = true;
+
+    if (!defined('ADMIN_DEFAULT_EMAIL') || !defined('ADMIN_DEFAULT_PASSWORD_HASH')) {
+        return;
+    }
+
+    $email = trim(ADMIN_DEFAULT_EMAIL);
+    $hash = ADMIN_DEFAULT_PASSWORD_HASH;
+    if ($email === '' || $hash === '') {
+        return;
+    }
+
+    try {
+        $pdo = get_db_connection();
+        $stmt = $pdo->prepare('INSERT INTO admins (email, password_hash) VALUES (:email, :password_hash)
+            ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash)');
+        $stmt->execute([
+            'email' => strtolower($email),
+            'password_hash' => $hash,
+        ]);
+    } catch (\PDOException $e) {
+        // quietly ignore when database is not writable
+    }
+}
+
 function authenticate_admin(string $email, string $password): bool
 {
+    seed_default_admin();
+
     $pdo = get_db_connection();
     $stmt = $pdo->prepare('SELECT * FROM admins WHERE email = :email LIMIT 1');
     $stmt->execute(['email' => strtolower($email)]);
     $admin = $stmt->fetch();
     if ($admin && password_verify($password, $admin['password_hash'])) {
         $_SESSION['admin'] = $admin;
+        return true;
+    }
+
+    if (defined('ADMIN_DEFAULT_EMAIL')
+        && defined('ADMIN_DEFAULT_PASSWORD_HASH')
+        && strtolower($email) === strtolower(ADMIN_DEFAULT_EMAIL)
+        && ADMIN_DEFAULT_PASSWORD_HASH !== ''
+        && password_verify($password, ADMIN_DEFAULT_PASSWORD_HASH)) {
+        $_SESSION['admin'] = $admin ?: [
+            'id' => 0,
+            'email' => strtolower($email),
+        ];
         return true;
     }
     return false;

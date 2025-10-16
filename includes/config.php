@@ -40,3 +40,11 @@ if (!defined('ADMIN_EMAIL')) {
 if (!defined('MAIL_FROM')) {
     define('MAIL_FROM', config_env('MAIL_FROM', 'no-reply@example.com'));
 }
+
+if (!defined('ADMIN_DEFAULT_EMAIL')) {
+    define('ADMIN_DEFAULT_EMAIL', config_env('ADMIN_DEFAULT_EMAIL', 'admin@opus7.pl'));
+}
+
+if (!defined('ADMIN_DEFAULT_PASSWORD_HASH')) {
+    define('ADMIN_DEFAULT_PASSWORD_HASH', config_env('ADMIN_DEFAULT_PASSWORD_HASH', '$2y$12$u6bCnhBk2z3CxyrsxA3kWONYCVrXfOkGQnkP5pHT4USJh0AWRjvQO'));
+}

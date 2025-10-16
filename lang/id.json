@@ -4,6 +4,11 @@
     "description": "Pelatihan K3 online lengkap dengan dukungan multibahasa untuk pekerja asing.",
     "get_started": "Mulai"
   },
+  "branding": {
+    "tagline": "Pelatihan keselamatan online untuk setiap lokasi kerja",
+    "language_switcher": "Bahasa",
+    "dark_mode": "Mode gelap"
+  },
   "nav": {
     "login": "Masuk",
     "logout": "Keluar",
@@ -14,10 +19,24 @@
     "certificates": "Sertifikat"
   },
   "landing": {
+    "hero_badge": "Pelatihan K3 tersertifikasi",
     "hero_title": "Onboarding aman untuk setiap karyawan",
     "hero_subtitle": "Akses kursus, selesaikan tes, dan unduh sertifikat dalam bahasa pilihan Anda.",
     "cta_login": "Masuk",
-    "cta_register": "Buat akun"
+    "cta_register": "Buat akun",
+    "hero_card_title": "Apa saja yang tersedia di platform?",
+    "feature_courses": "Materi pembelajaran sesuai bahasa",
+    "feature_tests": "Tes pilihan ganda dengan soal acak",
+    "feature_certificates": "Sertifikat PDF otomatis",
+    "section_title": "Mengapa memilih Platform BHP?",
+    "feature_courses_desc": "Video, presentasi, dan panduan PDF yang disiapkan untuk pekerja internasional.",
+    "feature_tests_desc": "Bank soal dalam lima bahasa dengan penilaian instan.",
+    "feature_certificates_desc": "Setiap kelulusan menghasilkan sertifikat PDF bernomor siap diunduh.",
+    "feature_admin_title": "Panel administrator",
+    "feature_admin_desc": "Kelola kursus, soal, sertifikat, dan ekspor dalam satu tempat.",
+    "stat_users": "Pekerja yang dilatih",
+    "stat_courses": "Kursus tersedia",
+    "stat_languages": "Bahasa didukung"
   },
   "auth": {
     "login_required": "Silakan masuk untuk melanjutkan.",

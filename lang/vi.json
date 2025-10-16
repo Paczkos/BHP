@@ -4,6 +4,11 @@
     "description": "Khóa đào tạo an toàn lao động trực tuyến với giao diện đa ngôn ngữ cho lao động nước ngoài.",
     "get_started": "Bắt đầu"
   },
+  "branding": {
+    "tagline": "Đào tạo an toàn trực tuyến cho mọi nơi làm việc",
+    "language_switcher": "Ngôn ngữ",
+    "dark_mode": "Chế độ tối"
+  },
   "nav": {
     "login": "Đăng nhập",
     "logout": "Đăng xuất",
@@ -14,10 +19,24 @@
     "certificates": "Chứng chỉ"
   },
   "landing": {
+    "hero_badge": "Khóa huấn luyện ATLĐ được chứng nhận",
     "hero_title": "Hội nhập an toàn cho mọi nhân viên",
     "hero_subtitle": "Truy cập khóa học, làm bài kiểm tra và tải chứng chỉ bằng ngôn ngữ bạn chọn.",
     "cta_login": "Đăng nhập",
-    "cta_register": "Tạo tài khoản"
+    "cta_register": "Tạo tài khoản",
+    "hero_card_title": "Những gì bạn nhận được từ nền tảng",
+    "feature_courses": "Tài liệu học theo ngôn ngữ",
+    "feature_tests": "Bài kiểm tra trắc nghiệm với câu hỏi ngẫu nhiên",
+    "feature_certificates": "Chứng chỉ PDF tạo tự động",
+    "section_title": "Vì sao chọn nền tảng BHP?",
+    "feature_courses_desc": "Video, slide và tài liệu PDF được chuẩn bị cho lao động quốc tế.",
+    "feature_tests_desc": "Ngân hàng câu hỏi bằng 5 ngôn ngữ với chấm điểm tức thì.",
+    "feature_certificates_desc": "Mỗi lần đạt tạo ra chứng chỉ PDF có mã số sẵn sàng tải xuống.",
+    "feature_admin_title": "Bảng điều khiển quản trị",
+    "feature_admin_desc": "Quản lý khóa học, câu hỏi, chứng chỉ và báo cáo tại một nơi.",
+    "stat_users": "Nhân viên đã huấn luyện",
+    "stat_courses": "Khóa học hiện có",
+    "stat_languages": "Ngôn ngữ hỗ trợ"
   },
   "auth": {
     "login_required": "Vui lòng đăng nhập để tiếp tục.",

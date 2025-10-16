@@ -1,9 +1,10 @@
 </main>
-<footer>
-    <div class="container" style="text-align:center; padding:2rem 0; color:#6b7280;">
-        &copy; <?= date('Y') ?> <?= APP_NAME ?>
-        <label style="margin-left:1rem; font-weight:600;">
-            <input type="checkbox" id="dark-mode-toggle"> Dark mode
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <span>&copy; <?= date('Y') ?> <?= APP_NAME ?></span>
+        <label class="dark-toggle" for="dark-mode-toggle">
+            <input type="checkbox" id="dark-mode-toggle" aria-label="<?= t('branding.dark_mode') ?>">
+            <span><?= t('branding.dark_mode') ?></span>
         </label>
     </div>
 </footer>

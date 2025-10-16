@@ -2,7 +2,8 @@ const languageSwitcher = document.querySelectorAll('[data-lang]');
 const darkToggle = document.querySelector('#dark-mode-toggle');
 
 languageSwitcher.forEach(btn => {
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', (event) => {
+    event.preventDefault();
     const lang = btn.dataset.lang;
     const url = new URL(window.location.href);
     url.searchParams.set('lang', lang);

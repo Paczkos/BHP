@@ -18,7 +18,7 @@ Kompletny szkielet aplikacji szkoleniowej BHP dla cudzoziemców. Projekt zawiera
 
 ## Konta testowe
 
-- Administrator: `admin@example.com` / `Password123!`
+- Administrator: `admin@opus7.pl` / `Admin!123` (konto zostaje automatycznie utworzone lub zaktualizowane przy pierwszej próbie logowania).
 - Kursanci: `anna@example.com`, `hoa@example.com`, `ivan@example.com` (hasło `Password123!`).
 
 ## Funkcjonalności
