@@ -16,6 +16,7 @@
     "register": "Daftar",
     "dashboard": "Dasbor",
     "profile": "Profil",
+    "admin_login": "Konsol admin",
     "courses": "Kursus",
     "tests": "Tes",
     "certificates": "Sertifikat"
@@ -58,6 +59,8 @@
     "last_name": "Nama belakang",
     "document": "Paspor atau PESEL",
     "language": "Bahasa pilihan",
+    "admin_prompt": "Apakah Anda administrator K3?",
+    "admin_login_cta": "Buka konsol admin",
     "confirm_password": "Konfirmasi kata sandi",
     "already_have_account": "Sudah punya akun?",
     "no_account": "Belum punya akun?",

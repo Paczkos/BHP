@@ -14,11 +14,12 @@ Kompletny szkielet aplikacji szkoleniowej BHP dla cudzoziemców firmowany przez 
 2. Utwórz bazę danych MySQL o nazwie `serwer244157_bhp` i zaimportuj plik `sql/schema.sql`.
 3. Domyślne połączenie korzysta z danych hostingu LH.pl (`DB_USER=serwer244157_bhp`, `DB_PASS=PAczkos19861986#`). W razie potrzeby zmodyfikuj je w `includes/config.php` lub ustaw zmienne środowiskowe (`DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`).
 4. Upewnij się, że katalogi `uploads/` oraz `certificates/` mają prawa do zapisu.
-5. Uruchom aplikację przez `http://localhost/BHP/public` (panel kursanta) oraz `http://localhost/BHP/admin` (panel administratora).
+5. Uruchom panel kursanta przez `http://localhost/BHP/public`.
+6. Panel administratora działa niezależnie i logowanie odbywa się pod adresem `http://localhost/BHP/admin/login.php` (w środowisku produkcyjnym: `https://opus7.pl/bhp2/admin/login.php`).
 
 ## Konta testowe
 
-- Administrator: `admin@agatgroup.pl` / `AgatGroup#2024` (konto zostaje automatycznie utworzone lub zaktualizowane przy pierwszej próbie logowania).
+- Administrator: `admin@agatgroup.pl` / `AgatGroup#2024` (konto zostaje automatycznie utworzone lub zaktualizowane przy pierwszej próbie logowania; użyj panelu `admin/login.php`).
 - Kursanci: `anna@example.com`, `hoa@example.com`, `ivan@example.com` (hasło `Password123!`).
 
 ## Funkcjonalności

@@ -41,6 +41,7 @@ $lang = detect_language();
                         <a href="dashboard.php" class="btn btn-outline"><?= t('nav.dashboard') ?></a>
                         <a href="logout.php" class="btn btn-primary"><?= t('nav.logout') ?></a>
                     <?php else: ?>
+                        <a href="<?= asset_url('admin/login.php') ?>" class="btn btn-link"><?= t('nav.admin_login') ?></a>
                         <a href="login.php" class="btn btn-outline"><?= t('nav.login') ?></a>
                         <a href="register.php" class="btn btn-primary"><?= t('nav.register') ?></a>
                     <?php endif; ?>

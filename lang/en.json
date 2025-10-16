@@ -16,6 +16,7 @@
     "register": "Register",
     "dashboard": "Dashboard",
     "profile": "Profile",
+    "admin_login": "Admin console",
     "courses": "Courses",
     "tests": "Tests",
     "certificates": "Certificates"
@@ -58,6 +59,8 @@
     "last_name": "Last name",
     "document": "Passport or PESEL",
     "language": "Preferred language",
+    "admin_prompt": "Are you a safety administrator?",
+    "admin_login_cta": "Go to the admin console",
     "confirm_password": "Confirm password",
     "already_have_account": "Already have an account?",
     "no_account": "Don't have an account?",

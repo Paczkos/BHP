@@ -2,6 +2,27 @@
 require_once __DIR__ . '/functions.php';
 require_once __DIR__ . '/db.php';
 
+function ensure_admin_table_exists(PDO $pdo): void
+{
+    static $adminTableEnsured = false;
+
+    if ($adminTableEnsured) {
+        return;
+    }
+
+    try {
+        $pdo->exec('CREATE TABLE IF NOT EXISTS admins (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            email VARCHAR(150) NOT NULL UNIQUE,
+            password_hash VARCHAR(255) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci');
+        $adminTableEnsured = true;
+    } catch (\PDOException $e) {
+        // The connection might not have DDL privileges – ignore silently.
+    }
+}
+
 function find_user_by_email(string $email): ?array
 {
     $pdo = get_db_connection();
@@ -101,6 +122,7 @@ function seed_default_admin(): void
 
     try {
         $pdo = get_db_connection();
+        ensure_admin_table_exists($pdo);
         $stmt = $pdo->prepare('INSERT INTO admins (email, password_hash) VALUES (:email, :password_hash)
             ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash)');
         $stmt->execute([
@@ -117,6 +139,7 @@ function authenticate_admin(string $email, string $password): bool
     seed_default_admin();
 
     $pdo = get_db_connection();
+    ensure_admin_table_exists($pdo);
     $stmt = $pdo->prepare('SELECT * FROM admins WHERE email = :email LIMIT 1');
     $stmt->execute(['email' => strtolower($email)]);
     $admin = $stmt->fetch();

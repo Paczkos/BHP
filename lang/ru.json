@@ -16,6 +16,7 @@
     "register": "Регистрация",
     "dashboard": "Панель",
     "profile": "Профиль",
+    "admin_login": "Консоль администратора",
     "courses": "Курсы",
     "tests": "Тесты",
     "certificates": "Сертификаты"
@@ -58,6 +59,8 @@
     "last_name": "Фамилия",
     "document": "Паспорт или PESEL",
     "language": "Предпочитаемый язык",
+    "admin_prompt": "Вы представитель службы охраны труда?",
+    "admin_login_cta": "Перейти в консоль администратора",
     "confirm_password": "Подтвердите пароль",
     "already_have_account": "Уже есть аккаунт?",
     "no_account": "Нет аккаунта?",

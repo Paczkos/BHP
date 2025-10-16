@@ -16,6 +16,7 @@
     "register": "Zarejestruj",
     "dashboard": "Panel",
     "profile": "Profil",
+    "admin_login": "Panel administratora",
     "courses": "Szkolenia",
     "tests": "Testy",
     "certificates": "Certyfikaty"
@@ -58,6 +59,8 @@
     "last_name": "Nazwisko",
     "document": "Paszport lub PESEL",
     "language": "Preferowany język",
+    "admin_prompt": "Jesteś administratorem BHP?",
+    "admin_login_cta": "Przejdź do panelu administratora",
     "confirm_password": "Potwierdź hasło",
     "already_have_account": "Masz już konto?",
     "no_account": "Nie masz konta?",

@@ -591,6 +591,25 @@ select {
   gap: 0.35rem;
 }
 
+.form-card .secondary-link {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: rgba(30, 64, 175, 0.88);
+  text-align: center;
+}
+
+.form-card .secondary-link a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(30, 64, 175, 0.25);
+  padding-bottom: 0.1rem;
+}
+
+.form-card .secondary-link a:hover {
+  border-bottom-color: rgba(30, 64, 175, 0.45);
+}
+
 .form-grid {
   display: grid;
   gap: 1rem;
@@ -798,6 +817,14 @@ select {
   background: rgba(15, 23, 42, 0.8);
   border-color: rgba(148, 163, 184, 0.2);
   box-shadow: none;
+}
+
+.dark .form-card .secondary-link {
+  color: rgba(191, 219, 254, 0.9);
+}
+
+.dark .form-card .secondary-link a {
+  border-bottom-color: rgba(191, 219, 254, 0.35);
 }
 
 .dark .form-fieldset {

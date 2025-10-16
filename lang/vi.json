@@ -16,6 +16,7 @@
     "register": "Đăng ký",
     "dashboard": "Bảng điều khiển",
     "profile": "Hồ sơ",
+    "admin_login": "Trang quản trị",
     "courses": "Khóa học",
     "tests": "Bài kiểm tra",
     "certificates": "Chứng chỉ"
@@ -58,6 +59,8 @@
     "last_name": "Họ",
     "document": "Hộ chiếu hoặc PESEL",
     "language": "Ngôn ngữ ưu tiên",
+    "admin_prompt": "Bạn là quản trị viên an toàn lao động?",
+    "admin_login_cta": "Tới trang quản trị",
     "confirm_password": "Xác nhận mật khẩu",
     "already_have_account": "Đã có tài khoản?",
     "no_account": "Chưa có tài khoản?",

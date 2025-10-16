@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="btn btn-primary"><?= t('auth.sign_in') ?></button>
         </form>
         <p><?= t('auth.no_account') ?> <a href="register.php"><?= t('auth.register') ?></a></p>
+        <p class="secondary-link"><?= t('auth.admin_prompt') ?> <a href="<?= asset_url('admin/login.php') ?>"><?= t('auth.admin_login_cta') ?></a></p>
     </div>
 </div>
 <?php
