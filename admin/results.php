@@ -2,6 +2,26 @@
 require_once __DIR__ . '/header.php';
 require_admin();
 $pdo = get_db_connection();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_result'])) {
+    $resultId = (int)($_POST['result_id'] ?? 0);
+
+    if ($resultId > 0) {
+        $stmt = $pdo->prepare('DELETE FROM results WHERE id = :id');
+        $stmt->execute(['id' => $resultId]);
+
+        if ($stmt->rowCount() > 0) {
+            flash('success', t('admin.result_deleted'));
+        } else {
+            flash('error', t('admin.result_delete_failed'));
+        }
+    } else {
+        flash('error', t('admin.result_delete_failed'));
+    }
+
+    redirect('results.php');
+}
+
 $results = $pdo->query('SELECT r.*, u.first_name, u.last_name, c.title FROM results r JOIN users u ON r.user_id = u.id JOIN courses c ON r.course_id = c.id ORDER BY r.completed_at DESC')->fetchAll();
 ?>
 <section class="admin-page-header">
@@ -15,6 +35,13 @@ $results = $pdo->query('SELECT r.*, u.first_name, u.last_name, c.title FROM resu
         <a class="btn btn-outline" href="certificates.php"><?= t('admin.certificates') ?></a>
     </div>
 </section>
+
+<?php if ($message = flash('success')): ?>
+    <div class="alert success"><?= $message ?></div>
+<?php endif; ?>
+<?php if ($message = flash('error')): ?>
+    <div class="alert error"><?= $message ?></div>
+<?php endif; ?>
 
 <div class="card admin-card table-card">
     <?php if (empty($results)): ?>
@@ -30,6 +57,7 @@ $results = $pdo->query('SELECT r.*, u.first_name, u.last_name, c.title FROM resu
                         <th><?= t('dashboard.score') ?></th>
                         <th><?= t('dashboard.status_passed') ?></th>
                         <th><?= t('certificate.date') ?></th>
+                        <th><?= t('admin.actions') ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,6 +73,16 @@ $results = $pdo->query('SELECT r.*, u.first_name, u.last_name, c.title FROM resu
                                 </span>
                             </td>
                             <td><?= date('Y-m-d H:i', strtotime($result['completed_at'])) ?></td>
+                            <td>
+                                <div class="table-actions">
+                                    <form method="post" data-confirm="<?= t('admin.result_delete_confirm') ?>">
+                                        <input type="hidden" name="result_id" value="<?= $result['id'] ?>">
+                                        <button class="btn btn-danger btn--sm" type="submit" name="delete_result" value="1">
+                                            <?= t('admin.delete') ?>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

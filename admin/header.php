@@ -43,10 +43,11 @@ $adminEmail = $adminAccount['email'] ?? (defined('ADMIN_DEFAULT_EMAIL') ? ADMIN_
             </div>
         </div>
         <nav class="admin-nav">
-            <a href="index.php" class="<?= basename($_SERVER['PHP_SELF']) === 'index.php' ? 'active' : '' ?>"><?= t('admin.users') ?></a>
-            <a href="courses.php" class="<?= basename($_SERVER['PHP_SELF']) === 'courses.php' ? 'active' : '' ?>"><?= t('admin.courses') ?></a>
-            <a href="results.php" class="<?= basename($_SERVER['PHP_SELF']) === 'results.php' ? 'active' : '' ?>"><?= t('admin.results') ?></a>
-            <a href="certificates.php" class="<?= basename($_SERVER['PHP_SELF']) === 'certificates.php' ? 'active' : '' ?>"><?= t('admin.certificates') ?></a>
+            <a href="index.php" class="<?= basename($_SERVER['PHP_SELF']) === 'index.php' ? 'active' : '' ?>"><?= t('admin.nav_dashboard') ?></a>
+            <a href="users.php" class="<?= basename($_SERVER['PHP_SELF']) === 'users.php' ? 'active' : '' ?>"><?= t('admin.nav_users') ?></a>
+            <a href="courses.php" class="<?= basename($_SERVER['PHP_SELF']) === 'courses.php' ? 'active' : '' ?>"><?= t('admin.nav_courses') ?></a>
+            <a href="results.php" class="<?= basename($_SERVER['PHP_SELF']) === 'results.php' ? 'active' : '' ?>"><?= t('admin.nav_results') ?></a>
+            <a href="certificates.php" class="<?= basename($_SERVER['PHP_SELF']) === 'certificates.php' ? 'active' : '' ?>"><?= t('admin.nav_certificates') ?></a>
         </nav>
     </div>
 </header>

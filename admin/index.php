@@ -24,6 +24,7 @@ $users = $usersStmt->fetchAll();
         <p class="admin-page-subtitle"><?= t('admin.overview_subtitle') ?></p>
     </div>
     <div class="admin-quick-links">
+        <a class="btn btn-outline" href="users.php"><?= t('admin.open_users') ?></a>
         <a class="btn btn-outline" href="courses.php"><?= t('admin.open_courses') ?></a>
         <a class="btn btn-outline" href="results.php"><?= t('admin.open_results') ?></a>
         <a class="btn btn-outline" href="certificates.php"><?= t('admin.open_certificates') ?></a>

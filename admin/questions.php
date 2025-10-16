@@ -11,6 +11,28 @@ if (!$course) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['delete_question'])) {
+        $questionId = (int)($_POST['question_id'] ?? 0);
+
+        if ($questionId > 0) {
+            $deleteStmt = $pdo->prepare('DELETE FROM questions WHERE id = :id AND course_id = :course_id');
+            $deleteStmt->execute([
+                'id' => $questionId,
+                'course_id' => $courseId,
+            ]);
+
+            if ($deleteStmt->rowCount() > 0) {
+                flash('success', t('admin.question_deleted'));
+            } else {
+                flash('error', t('admin.question_delete_failed'));
+            }
+        } else {
+            flash('error', t('admin.question_delete_failed'));
+        }
+
+        redirect('questions.php?course_id=' . $courseId);
+    }
+
     $questionText = sanitize($_POST['question_text'] ?? '');
     $answers = $_POST['answers'] ?? [];
     $correctIndex = (int)($_POST['correct_answer'] ?? 0);
@@ -64,6 +86,9 @@ if (!empty($questions)) {
 <?php if ($message = flash('success')): ?>
     <div class="alert success"><?= $message ?></div>
 <?php endif; ?>
+<?php if ($message = flash('error')): ?>
+    <div class="alert error"><?= $message ?></div>
+<?php endif; ?>
 
 <div class="card admin-card admin-card--form">
     <div class="admin-card-header">
@@ -110,7 +135,13 @@ if (!empty($questions)) {
             <?php foreach ($questions as $question): ?>
                 <li>
                     <div class="question-item">
-                        <span class="question-text"><?= htmlspecialchars($question['question_text']) ?></span>
+                        <div class="question-item-header">
+                            <span class="question-text"><?= htmlspecialchars($question['question_text']) ?></span>
+                            <form method="post" data-confirm="<?= t('admin.question_delete_confirm') ?>">
+                                <input type="hidden" name="question_id" value="<?= $question['id'] ?>">
+                                <button class="btn btn-danger btn--sm" type="submit" name="delete_question" value="1"><?= t('admin.delete') ?></button>
+                            </form>
+                        </div>
                         <?php if (!empty($answersByQuestion[$question['id']])): ?>
                             <ul class="question-answers">
                                 <?php foreach ($answersByQuestion[$question['id']] as $answer): ?>
