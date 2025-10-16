@@ -30,10 +30,18 @@ function get_course_materials(int $courseId): array
 function get_random_questions(int $courseId, string $language, int $limit = 5): array
 {
     $pdo = get_db_connection();
-    $stmt = $pdo->prepare('SELECT * FROM questions WHERE course_id = :course_id AND language = :language ORDER BY RAND() LIMIT :limit');
+
+    // MySQL does not allow binding the LIMIT clause when native prepared statements are used.
+    // Cast the limit to an integer to avoid SQL injection and interpolate it directly.
+    $limit = max(1, (int) $limit);
+    $query = sprintf(
+        'SELECT * FROM questions WHERE course_id = :course_id AND language = :language ORDER BY RAND() LIMIT %d',
+        $limit
+    );
+
+    $stmt = $pdo->prepare($query);
     $stmt->bindValue(':course_id', $courseId, PDO::PARAM_INT);
     $stmt->bindValue(':language', $language, PDO::PARAM_STR);
-    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
     $stmt->execute();
     $questions = $stmt->fetchAll();
 
