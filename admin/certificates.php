@@ -3,30 +3,65 @@ require_once __DIR__ . '/header.php';
 require_admin();
 $pdo = get_db_connection();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['certificate_id'])) {
-    if (!certificates_support_extended_details()) {
-        flash('error', t('admin.signed_scan_unavailable'));
-        header('Location: certificates.php');
-        exit;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['delete_certificate_id'])) {
+        $certificateId = (int)$_POST['delete_certificate_id'];
+
+        $stmt = $pdo->prepare('SELECT pdf_path, signed_scan_path FROM certificates WHERE id = :id');
+        $stmt->execute(['id' => $certificateId]);
+        $certificate = $stmt->fetch();
+
+        if ($certificate) {
+            $delete = $pdo->prepare('DELETE FROM certificates WHERE id = :id');
+            $delete->execute(['id' => $certificateId]);
+
+            if ($delete->rowCount() > 0) {
+                foreach (['pdf_path', 'signed_scan_path'] as $field) {
+                    if (!empty($certificate[$field])) {
+                        $file = __DIR__ . '/../' . $certificate[$field];
+                        if (is_file($file)) {
+                            @unlink($file);
+                        }
+                    }
+                }
+
+                flash('success', t('admin.certificate_deleted'));
+            } else {
+                flash('error', t('admin.certificate_delete_failed'));
+            }
+        } else {
+            flash('error', t('admin.certificate_delete_failed'));
+        }
+
+        redirect('certificates.php');
     }
 
-    $certificateId = (int)$_POST['certificate_id'];
-    if (!empty($_FILES['signed_scan']['name'])) {
-        $uploadDir = __DIR__ . '/../uploads/signed/';
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0775, true);
+    if (isset($_POST['certificate_id'])) {
+        if (!certificates_support_extended_details()) {
+            flash('error', t('admin.signed_scan_unavailable'));
+            redirect('certificates.php');
         }
 
-        $fileName = 'signed_' . $certificateId . '_' . basename($_FILES['signed_scan']['name']);
-        $target = $uploadDir . $fileName;
-        if (move_uploaded_file($_FILES['signed_scan']['tmp_name'], $target)) {
-            $pdo->prepare('UPDATE certificates SET signed_scan_path = :path WHERE id = :id')
-                ->execute([
-                    'path' => 'uploads/signed/' . $fileName,
-                    'id' => $certificateId,
-                ]);
-            flash('success', t('admin.upload_signed_scan'));
+        $certificateId = (int)$_POST['certificate_id'];
+        if (!empty($_FILES['signed_scan']['name'])) {
+            $uploadDir = __DIR__ . '/../uploads/signed/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0775, true);
+            }
+
+            $fileName = 'signed_' . $certificateId . '_' . basename($_FILES['signed_scan']['name']);
+            $target = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['signed_scan']['tmp_name'], $target)) {
+                $pdo->prepare('UPDATE certificates SET signed_scan_path = :path WHERE id = :id')
+                    ->execute([
+                        'path' => 'uploads/signed/' . $fileName,
+                        'id' => $certificateId,
+                    ]);
+                flash('success', t('admin.upload_signed_scan'));
+            }
         }
+
+        redirect('certificates.php');
     }
 }
 
@@ -47,6 +82,9 @@ $certificates = $pdo->query('SELECT cert.*, u.first_name, u.last_name, c.title F
 <?php if ($message = flash('success')): ?>
     <div class="alert success"><?= $message ?></div>
 <?php endif; ?>
+<?php if ($message = flash('error')): ?>
+    <div class="alert error"><?= $message ?></div>
+<?php endif; ?>
 
 <div class="card admin-card table-card">
     <?php if (empty($certificates)): ?>
@@ -65,6 +103,7 @@ $certificates = $pdo->query('SELECT cert.*, u.first_name, u.last_name, c.title F
                         <th><?= t('certificate.company_label') ?></th>
                         <th><?= t('certificate.issued_at') ?></th>
                         <th><?= t('admin.upload_signed_scan') ?></th>
+                        <th><?= t('admin.actions') ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -102,6 +141,14 @@ $certificates = $pdo->query('SELECT cert.*, u.first_name, u.last_name, c.title F
                                 <?php else: ?>
                                     <p class="table-subtext"><?= t('admin.signed_scan_unavailable') ?></p>
                                 <?php endif; ?>
+                            </td>
+                            <td>
+                                <form method="post" data-confirm="<?= t('admin.certificate_delete_confirm') ?>">
+                                    <input type="hidden" name="delete_certificate_id" value="<?= $certificate['id'] ?>">
+                                    <button class="btn btn-danger btn--sm" type="submit">
+                                        <?= t('admin.delete') ?>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     <?php endforeach; ?>
