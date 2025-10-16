@@ -34,18 +34,34 @@ if (!function_exists('config_default_app_url')) {
     {
         if (!empty($_SERVER['HTTP_HOST'])) {
             $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' && $_SERVER['HTTPS'] !== '0') ? 'https' : 'http';
-            $scriptDir = dirname($_SERVER['SCRIPT_NAME'] ?? '') ?: '';
-            $normalizedDir = rtrim(str_replace('\\', '/', $scriptDir), '/');
+            $scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? ''));
+            $scriptDir = rtrim($scriptDir, '/');
 
-            return rtrim($scheme . '://' . $_SERVER['HTTP_HOST'] . ($normalizedDir ? '/' . ltrim($normalizedDir, '/') : ''), '/') ?: 'http://localhost/BHP/public';
+            if ($scriptDir === '.' || $scriptDir === '/') {
+                $scriptDir = '';
+            }
+
+            $segments = $scriptDir !== '' ? explode('/', ltrim($scriptDir, '/')) : [];
+
+            if (!empty($segments)) {
+                $lastSegment = end($segments);
+                if (in_array($lastSegment, ['public', 'admin'], true)) {
+                    array_pop($segments);
+                }
+            }
+
+            $basePath = $segments ? '/' . implode('/', $segments) : '';
+            $baseUrl = rtrim($scheme . '://' . $_SERVER['HTTP_HOST'] . $basePath, '/');
+
+            return $baseUrl ?: 'http://localhost/BHP';
         }
 
-        return 'http://localhost/BHP/public';
+        return 'http://localhost/BHP';
     }
 }
 
 if (!defined('APP_URL')) {
-    define('APP_URL', config_env('APP_URL', config_default_app_url()));
+    define('APP_URL', rtrim(config_env('APP_URL', config_default_app_url()), '/'));
 }
 
 if (!defined('ADMIN_EMAIL')) {

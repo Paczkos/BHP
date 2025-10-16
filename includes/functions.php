@@ -14,25 +14,23 @@ function redirect(string $path): void
     exit;
 }
 
-function app_public_url(): string
+function app_root_url(): string
 {
     return rtrim(APP_URL, '/');
 }
 
-function app_root_url(): string
+function app_public_url(): string
 {
-    $publicUrl = app_public_url();
-
-    if (substr($publicUrl, -7) === '/public') {
-        return rtrim(substr($publicUrl, 0, -7), '/');
-    }
-
-    return $publicUrl;
+    return rtrim(app_root_url(), '/') . '/public';
 }
 
 function asset_url(string $path): string
 {
-    return app_root_url() . '/' . ltrim($path, '/');
+    if (preg_match('/^https?:\/\//i', $path)) {
+        return $path;
+    }
+
+    return rtrim(app_root_url(), '/') . '/' . ltrim($path, '/');
 }
 
 function flash(string $key, ?string $message = null): ?string
