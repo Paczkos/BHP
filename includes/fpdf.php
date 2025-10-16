@@ -187,8 +187,45 @@ class FPDF
         $w = $w <= 0 ? $this->pageWidthMm - $this->leftMargin - $this->rightMargin : $w;
         $lines = preg_split("/\r?\n/", $txt);
         foreach ($lines as $line) {
-            $this->Cell($w, $h, $line, 0, 1, $align, $fill);
+            $wrappedLines = $this->wrapLineToWidth($line, $w);
+            if (empty($wrappedLines)) {
+                $this->Cell($w, $h, '', 0, 1, $align, $fill);
+                continue;
+            }
+
+            foreach ($wrappedLines as $wrapped) {
+                $this->Cell($w, $h, $wrapped, 0, 1, $align, $fill);
+            }
         }
+    }
+
+    private function wrapLineToWidth(string $text, float $maxWidth): array
+    {
+        $text = trim($text);
+        if ($text === '') {
+            return [''];
+        }
+
+        $words = preg_split('/\s+/', $text);
+        $lines = [];
+        $current = '';
+
+        foreach ($words as $word) {
+            $candidate = $current === '' ? $word : $current . ' ' . $word;
+            if ($this->estimateTextWidthMm($candidate) <= $maxWidth || $current === '') {
+                $current = $candidate;
+                continue;
+            }
+
+            $lines[] = $current;
+            $current = $word;
+        }
+
+        if ($current !== '') {
+            $lines[] = $current;
+        }
+
+        return $lines;
     }
 
     public function Ln(?float $h = null): void
