@@ -151,15 +151,14 @@ class FPDF
         }
 
         $x = $this->currentX;
-        $effectiveWidth = $w;
 
         $encodedText = $this->encodeText($txt);
         if ($align === 'C') {
             $textWidth = $this->estimateTextWidthMm($encodedText);
-            $x = $this->leftMargin + max(0.0, ($effectiveWidth - $textWidth) / 2.0);
+            $x = $this->currentX + max(0.0, ($w - $textWidth) / 2.0);
         } elseif ($align === 'R') {
             $textWidth = $this->estimateTextWidthMm($encodedText);
-            $x = $this->leftMargin + max(0.0, $effectiveWidth - $textWidth);
+            $x = $this->currentX + max(0.0, $w - $textWidth);
         }
 
         $baseline = $this->currentY + $h - $this->fontSizePt * 0.3527 * 0.2;
