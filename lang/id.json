@@ -118,7 +118,8 @@
     "company_label": "Pelatihan diselenggarakan untuk",
     "issued_at": "Tanggal penerbitan sertifikat",
     "stamp_instruction": "Silakan tempelkan stempel verifikasi pada kotak di bawah ini",
-    "signature_placeholder": "Tanda tangan / Stempel"
+    "signature_placeholder": "Tanda tangan / Stempel",
+    "not_available": "Tidak tersedia"
   },
   "admin": {
     "panel": "Panel admin",
@@ -140,6 +141,7 @@
     "update": "Perbarui",
     "cancel": "Batal",
     "language": "Bahasa",
+    "signed_scan_unavailable": "Unggahan scan bertanda tangan tidak didukung oleh struktur basis data saat ini.",
     "logged_in_as": "Masuk sebagai",
     "role_admin": "Administrator K3",
     "overview_title": "Dasbor operasional K3",

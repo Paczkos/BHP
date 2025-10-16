@@ -2,6 +2,26 @@
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/functions.php';
 
+function certificates_support_extended_details(): bool
+{
+    static $supports = null;
+
+    if ($supports !== null) {
+        return $supports;
+    }
+
+    $pdo = get_db_connection();
+
+    try {
+        $pdo->query('SELECT training_date, test_date, company_name FROM certificates LIMIT 0');
+        $supports = true;
+    } catch (PDOException $exception) {
+        $supports = false;
+    }
+
+    return $supports;
+}
+
 function get_courses(string $language, ?int $userId = null): array
 {
     $pdo = get_db_connection();
@@ -120,16 +140,27 @@ function record_certificate(
     string $companyName
 ): string {
     $pdo = get_db_connection();
-    $stmt = $pdo->prepare('INSERT INTO certificates (user_id, course_id, certificate_number, pdf_path, training_date, test_date, company_name, issued_at) VALUES (:user_id, :course_id, :number, :pdf_path, :training_date, :test_date, :company_name, NOW())');
-    $stmt->execute([
-        'user_id' => $userId,
-        'course_id' => $courseId,
-        'number' => '',
-        'pdf_path' => $pdfPath,
-        'training_date' => $trainingDate,
-        'test_date' => $testDate,
-        'company_name' => $companyName,
-    ]);
+
+    if (certificates_support_extended_details()) {
+        $stmt = $pdo->prepare('INSERT INTO certificates (user_id, course_id, certificate_number, pdf_path, training_date, test_date, company_name, issued_at) VALUES (:user_id, :course_id, :number, :pdf_path, :training_date, :test_date, :company_name, NOW())');
+        $stmt->execute([
+            'user_id' => $userId,
+            'course_id' => $courseId,
+            'number' => '',
+            'pdf_path' => $pdfPath,
+            'training_date' => $trainingDate,
+            'test_date' => $testDate,
+            'company_name' => $companyName,
+        ]);
+    } else {
+        $stmt = $pdo->prepare('INSERT INTO certificates (user_id, course_id, certificate_number, pdf_path, issued_at) VALUES (:user_id, :course_id, :number, :pdf_path, NOW())');
+        $stmt->execute([
+            'user_id' => $userId,
+            'course_id' => $courseId,
+            'number' => '',
+            'pdf_path' => $pdfPath,
+        ]);
+    }
 
     $certificateId = (int) $pdo->lastInsertId();
     $certificateNumber = generate_certificate_number($certificateId);
@@ -156,5 +187,16 @@ function get_user_certificates(int $userId): array
     $pdo = get_db_connection();
     $stmt = $pdo->prepare('SELECT cert.*, c.title FROM certificates cert JOIN courses c ON cert.course_id = c.id WHERE cert.user_id = :user_id ORDER BY cert.issued_at DESC');
     $stmt->execute(['user_id' => $userId]);
-    return $stmt->fetchAll();
+    $certificates = $stmt->fetchAll();
+
+    if (!certificates_support_extended_details()) {
+        foreach ($certificates as &$certificate) {
+            $certificate['training_date'] = $certificate['training_date'] ?? null;
+            $certificate['test_date'] = $certificate['test_date'] ?? null;
+            $certificate['company_name'] = $certificate['company_name'] ?? null;
+        }
+        unset($certificate);
+    }
+
+    return $certificates;
 }

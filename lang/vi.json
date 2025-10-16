@@ -118,7 +118,8 @@
     "company_label": "Khóa đào tạo dành cho",
     "issued_at": "Ngày cấp chứng chỉ",
     "stamp_instruction": "Vui lòng đóng dấu xác nhận trong ô bên dưới",
-    "signature_placeholder": "Chữ ký / Con dấu"
+    "signature_placeholder": "Chữ ký / Con dấu",
+    "not_available": "Không có dữ liệu"
   },
   "admin": {
     "panel": "Bảng quản trị",
@@ -140,6 +141,7 @@
     "update": "Cập nhật",
     "cancel": "Hủy",
     "language": "Ngôn ngữ",
+    "signed_scan_unavailable": "Không hỗ trợ tải bản scan đã ký với cấu trúc cơ sở dữ liệu hiện tại.",
     "logged_in_as": "Đăng nhập với tư cách",
     "role_admin": "Quản trị viên An toàn",
     "overview_title": "Bảng điều khiển an toàn lao động",

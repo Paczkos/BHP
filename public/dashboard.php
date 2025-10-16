@@ -80,10 +80,15 @@ $certificates = get_user_certificates($user['id']);
                 <tbody>
                     <?php foreach ($certificates as $certificate): ?>
                         <tr>
+                            <?php
+                                $trainingDate = $certificate['training_date'] ?? null;
+                                $testDate = $certificate['test_date'] ?? null;
+                                $placeholder = t('certificate.not_available');
+                            ?>
                             <td><?= htmlspecialchars($certificate['title']) ?></td>
                             <td><?= htmlspecialchars($certificate['certificate_number']) ?></td>
-                            <td><?= htmlspecialchars($certificate['training_date']) ?></td>
-                            <td><?= htmlspecialchars($certificate['test_date']) ?></td>
+                            <td><?= htmlspecialchars($trainingDate ?: $placeholder) ?></td>
+                            <td><?= htmlspecialchars($testDate ?: $placeholder) ?></td>
                             <td><?= htmlspecialchars($certificate['issued_at']) ?></td>
                             <td><a class="btn btn-outline" href="../<?= htmlspecialchars($certificate['pdf_path']) ?>" target="_blank"><?= t('dashboard.download') ?></a></td>
                         </tr>

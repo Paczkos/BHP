@@ -118,7 +118,8 @@
     "company_label": "Training provided for",
     "issued_at": "Certificate issued",
     "stamp_instruction": "Please affix the verification stamp below",
-    "signature_placeholder": "Signature / Stamp"
+    "signature_placeholder": "Signature / Stamp",
+    "not_available": "Not recorded"
   },
   "admin": {
     "panel": "Admin panel",
@@ -140,6 +141,7 @@
     "update": "Update",
     "cancel": "Cancel",
     "language": "Language",
+    "signed_scan_unavailable": "Signed scan uploads are not supported with the current database structure.",
     "logged_in_as": "Signed in as",
     "role_admin": "Administrator",
     "overview_title": "Safety operations dashboard",

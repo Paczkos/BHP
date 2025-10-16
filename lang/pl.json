@@ -118,7 +118,8 @@
     "company_label": "Szkolenie zrealizowane dla",
     "issued_at": "Data wystawienia certyfikatu",
     "stamp_instruction": "Prosimy o przybicie pieczątki w wyznaczonym miejscu",
-    "signature_placeholder": "Podpis / Pieczęć"
+    "signature_placeholder": "Podpis / Pieczęć",
+    "not_available": "Brak danych"
   },
   "admin": {
     "panel": "Panel administratora",
@@ -140,6 +141,7 @@
     "update": "Zaktualizuj",
     "cancel": "Anuluj",
     "language": "Język",
+    "signed_scan_unavailable": "Przesyłanie podpisanych skanów nie jest dostępne w tej wersji bazy danych.",
     "logged_in_as": "Zalogowano jako",
     "role_admin": "Administrator BHP",
     "overview_title": "Panel operacyjny BHP",
