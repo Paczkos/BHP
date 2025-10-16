@@ -1,0 +1,89 @@
+{
+  "app": {
+    "title": "Health & Safety Training Platform",
+    "description": "Complete online BHP training with multilingual support for foreign workers.",
+    "get_started": "Get started"
+  },
+  "nav": {
+    "login": "Log in",
+    "logout": "Log out",
+    "register": "Register",
+    "dashboard": "Dashboard",
+    "courses": "Courses",
+    "tests": "Tests",
+    "certificates": "Certificates"
+  },
+  "landing": {
+    "hero_title": "Safe onboarding for every employee",
+    "hero_subtitle": "Access courses, pass tests and download certificates in your preferred language.",
+    "cta_login": "Log in",
+    "cta_register": "Create account"
+  },
+  "auth": {
+    "login_required": "Please log in to continue.",
+    "admin_required": "Administrator access required.",
+    "login": "Login",
+    "register": "Registration",
+    "email": "E-mail",
+    "password": "Password",
+    "forgot_password": "Forgot password?",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "document": "Passport or PESEL",
+    "language": "Preferred language",
+    "confirm_password": "Confirm password",
+    "already_have_account": "Already have an account?",
+    "no_account": "Don't have an account?",
+    "create_account": "Create account",
+    "sign_in": "Sign in",
+    "success_register": "Account created successfully. Please log in.",
+    "invalid_credentials": "Invalid e-mail or password.",
+    "password_mismatch": "Passwords do not match.",
+    "email_exists": "An account with this e-mail already exists."
+  },
+  "dashboard": {
+    "welcome": "Welcome, {name}!",
+    "available_courses": "Available courses",
+    "materials": "Training materials",
+    "start_test": "Start test",
+    "your_results": "Your results",
+    "your_certificates": "Your certificates",
+    "score": "Score",
+    "status_passed": "Passed",
+    "status_failed": "Failed",
+    "download": "Download"
+  },
+  "test": {
+    "heading": "Knowledge test",
+    "submit": "Submit answers",
+    "result_passed": "Congratulations! You passed the test with {score}%.",
+    "result_failed": "You scored {score}%. Please review the materials and try again.",
+    "minimum_score": "Minimum score to pass: {score}%"
+  },
+  "certificate": {
+    "title": "Certificate of Completion",
+    "body": "This certifies that %s, document number %s, has successfully completed the course: %s.",
+    "number": "Certificate number",
+    "date": "Date",
+    "signature_placeholder": "Signature / Stamp"
+  },
+  "admin": {
+    "panel": "Admin panel",
+    "users": "Users",
+    "courses": "Courses",
+    "add_course": "Add course",
+    "questions": "Questions",
+    "materials": "Materials",
+    "results": "Results",
+    "certificates": "Certificates",
+    "upload_signed_scan": "Upload signed scan",
+    "save": "Save",
+    "language": "Language"
+  },
+  "alerts": {
+    "course_not_found": "Selected course was not found.",
+    "test_submitted": "Test submitted successfully.",
+    "certificate_generated": "Certificate generated and saved.",
+    "registration_failed": "Registration failed. Please try again."
+  }
+}

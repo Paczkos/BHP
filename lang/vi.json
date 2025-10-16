@@ -1,0 +1,89 @@
+{
+  "app": {
+    "title": "Nền tảng đào tạo an toàn lao động",
+    "description": "Khóa đào tạo an toàn lao động trực tuyến với giao diện đa ngôn ngữ cho lao động nước ngoài.",
+    "get_started": "Bắt đầu"
+  },
+  "nav": {
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "register": "Đăng ký",
+    "dashboard": "Bảng điều khiển",
+    "courses": "Khóa học",
+    "tests": "Bài kiểm tra",
+    "certificates": "Chứng chỉ"
+  },
+  "landing": {
+    "hero_title": "Hội nhập an toàn cho mọi nhân viên",
+    "hero_subtitle": "Truy cập khóa học, làm bài kiểm tra và tải chứng chỉ bằng ngôn ngữ bạn chọn.",
+    "cta_login": "Đăng nhập",
+    "cta_register": "Tạo tài khoản"
+  },
+  "auth": {
+    "login_required": "Vui lòng đăng nhập để tiếp tục.",
+    "admin_required": "Cần quyền quản trị viên.",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "email": "E-mail",
+    "password": "Mật khẩu",
+    "forgot_password": "Quên mật khẩu?",
+    "first_name": "Tên",
+    "last_name": "Họ",
+    "document": "Hộ chiếu hoặc PESEL",
+    "language": "Ngôn ngữ ưu tiên",
+    "confirm_password": "Xác nhận mật khẩu",
+    "already_have_account": "Đã có tài khoản?",
+    "no_account": "Chưa có tài khoản?",
+    "create_account": "Tạo tài khoản",
+    "sign_in": "Đăng nhập",
+    "success_register": "Tạo tài khoản thành công. Vui lòng đăng nhập.",
+    "invalid_credentials": "E-mail hoặc mật khẩu không hợp lệ.",
+    "password_mismatch": "Mật khẩu không trùng khớp.",
+    "email_exists": "Đã có tài khoản sử dụng e-mail này."
+  },
+  "dashboard": {
+    "welcome": "Chào mừng, {name}!",
+    "available_courses": "Khóa học hiện có",
+    "materials": "Tài liệu đào tạo",
+    "start_test": "Bắt đầu kiểm tra",
+    "your_results": "Kết quả của bạn",
+    "your_certificates": "Chứng chỉ của bạn",
+    "score": "Điểm",
+    "status_passed": "Đạt",
+    "status_failed": "Không đạt",
+    "download": "Tải xuống"
+  },
+  "test": {
+    "heading": "Bài kiểm tra kiến thức",
+    "submit": "Nộp câu trả lời",
+    "result_passed": "Chúc mừng! Bạn đạt {score}%.",
+    "result_failed": "Bạn đạt {score}%. Hãy ôn lại tài liệu và thử lại.",
+    "minimum_score": "Điểm tối thiểu để đạt: {score}%"
+  },
+  "certificate": {
+    "title": "Chứng chỉ hoàn thành",
+    "body": "Xác nhận rằng %s, số giấy tờ %s, đã hoàn thành khóa học: %s.",
+    "number": "Số chứng chỉ",
+    "date": "Ngày",
+    "signature_placeholder": "Chữ ký / Con dấu"
+  },
+  "admin": {
+    "panel": "Bảng quản trị",
+    "users": "Người dùng",
+    "courses": "Khóa học",
+    "add_course": "Thêm khóa học",
+    "questions": "Câu hỏi",
+    "materials": "Tài liệu",
+    "results": "Kết quả",
+    "certificates": "Chứng chỉ",
+    "upload_signed_scan": "Tải bản scan đã ký",
+    "save": "Lưu",
+    "language": "Ngôn ngữ"
+  },
+  "alerts": {
+    "course_not_found": "Không tìm thấy khóa học đã chọn.",
+    "test_submitted": "Đã gửi bài kiểm tra thành công.",
+    "certificate_generated": "Chứng chỉ đã được tạo và lưu.",
+    "registration_failed": "Đăng ký không thành công. Vui lòng thử lại."
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "app": {
+    "title": "Platforma Szkoleniowa BHP",
+    "description": "Kompletne szkolenia BHP online z wielojęzycznym interfejsem dla cudzoziemców.",
+    "get_started": "Rozpocznij"
+  },
+  "nav": {
+    "login": "Zaloguj się",
+    "logout": "Wyloguj",
+    "register": "Zarejestruj",
+    "dashboard": "Panel",
+    "courses": "Szkolenia",
+    "tests": "Testy",
+    "certificates": "Certyfikaty"
+  },
+  "landing": {
+    "hero_title": "Bezpieczne wdrożenie każdego pracownika",
+    "hero_subtitle": "Uzyskaj dostęp do kursów, rozwiązuj testy i pobieraj certyfikaty w wybranym języku.",
+    "cta_login": "Zaloguj się",
+    "cta_register": "Utwórz konto"
+  },
+  "auth": {
+    "login_required": "Zaloguj się, aby kontynuować.",
+    "admin_required": "Wymagane uprawnienia administratora.",
+    "login": "Logowanie",
+    "register": "Rejestracja",
+    "email": "E-mail",
+    "password": "Hasło",
+    "forgot_password": "Nie pamiętasz hasła?",
+    "first_name": "Imię",
+    "last_name": "Nazwisko",
+    "document": "Paszport lub PESEL",
+    "language": "Preferowany język",
+    "confirm_password": "Potwierdź hasło",
+    "already_have_account": "Masz już konto?",
+    "no_account": "Nie masz konta?",
+    "create_account": "Utwórz konto",
+    "sign_in": "Zaloguj",
+    "success_register": "Konto utworzone poprawnie. Zaloguj się.",
+    "invalid_credentials": "Nieprawidłowy e-mail lub hasło.",
+    "password_mismatch": "Hasła nie są identyczne.",
+    "email_exists": "Konto z tym adresem e-mail już istnieje."
+  },
+  "dashboard": {
+    "welcome": "Witaj, {name}!",
+    "available_courses": "Dostępne szkolenia",
+    "materials": "Materiały szkoleniowe",
+    "start_test": "Rozpocznij test",
+    "your_results": "Twoje wyniki",
+    "your_certificates": "Twoje certyfikaty",
+    "score": "Wynik",
+    "status_passed": "Zdane",
+    "status_failed": "Niezdane",
+    "download": "Pobierz"
+  },
+  "test": {
+    "heading": "Test wiedzy",
+    "submit": "Zapisz odpowiedzi",
+    "result_passed": "Gratulacje! Zdałeś test z wynikiem {score}%.",
+    "result_failed": "Uzyskałeś {score}%. Powtórz materiał i spróbuj ponownie.",
+    "minimum_score": "Minimalny wynik zaliczenia: {score}%"
+  },
+  "certificate": {
+    "title": "Certyfikat ukończenia",
+    "body": "Niniejszym zaświadcza się, że %s, numer dokumentu %s, ukończył szkolenie: %s.",
+    "number": "Numer certyfikatu",
+    "date": "Data",
+    "signature_placeholder": "Podpis / Pieczęć"
+  },
+  "admin": {
+    "panel": "Panel administratora",
+    "users": "Użytkownicy",
+    "courses": "Szkolenia",
+    "add_course": "Dodaj szkolenie",
+    "questions": "Pytania",
+    "materials": "Materiały",
+    "results": "Wyniki",
+    "certificates": "Certyfikaty",
+    "upload_signed_scan": "Dodaj podpisany skan",
+    "save": "Zapisz",
+    "language": "Język"
+  },
+  "alerts": {
+    "course_not_found": "Wybrane szkolenie nie zostało znalezione.",
+    "test_submitted": "Test zapisano pomyślnie.",
+    "certificate_generated": "Certyfikat został wygenerowany i zapisany.",
+    "registration_failed": "Rejestracja nie powiodła się. Spróbuj ponownie."
+  }
+}

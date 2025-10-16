@@ -1,0 +1,89 @@
+{
+  "app": {
+    "title": "Платформа обучения охране труда",
+    "description": "Полный онлайн-курс по охране труда с многоязычной поддержкой для иностранных работников.",
+    "get_started": "Начать"
+  },
+  "nav": {
+    "login": "Войти",
+    "logout": "Выйти",
+    "register": "Регистрация",
+    "dashboard": "Панель",
+    "courses": "Курсы",
+    "tests": "Тесты",
+    "certificates": "Сертификаты"
+  },
+  "landing": {
+    "hero_title": "Безопасное введение для каждого сотрудника",
+    "hero_subtitle": "Доступ к материалам, прохождение тестов и загрузка сертификатов на вашем языке.",
+    "cta_login": "Войти",
+    "cta_register": "Создать аккаунт"
+  },
+  "auth": {
+    "login_required": "Пожалуйста, войдите, чтобы продолжить.",
+    "admin_required": "Требуется доступ администратора.",
+    "login": "Вход",
+    "register": "Регистрация",
+    "email": "E-mail",
+    "password": "Пароль",
+    "forgot_password": "Забыли пароль?",
+    "first_name": "Имя",
+    "last_name": "Фамилия",
+    "document": "Паспорт или PESEL",
+    "language": "Предпочитаемый язык",
+    "confirm_password": "Подтвердите пароль",
+    "already_have_account": "Уже есть аккаунт?",
+    "no_account": "Нет аккаунта?",
+    "create_account": "Создать аккаунт",
+    "sign_in": "Войти",
+    "success_register": "Аккаунт успешно создан. Войдите в систему.",
+    "invalid_credentials": "Неверный e-mail или пароль.",
+    "password_mismatch": "Пароли не совпадают.",
+    "email_exists": "Учетная запись с этим e-mail уже существует."
+  },
+  "dashboard": {
+    "welcome": "Добро пожаловать, {name}!",
+    "available_courses": "Доступные курсы",
+    "materials": "Учебные материалы",
+    "start_test": "Начать тест",
+    "your_results": "Ваши результаты",
+    "your_certificates": "Ваши сертификаты",
+    "score": "Результат",
+    "status_passed": "Сдано",
+    "status_failed": "Не сдано",
+    "download": "Скачать"
+  },
+  "test": {
+    "heading": "Тест знаний",
+    "submit": "Отправить ответы",
+    "result_passed": "Поздравляем! Вы сдали тест с результатом {score}%.",
+    "result_failed": "Ваш результат {score}%. Повторите материал и попробуйте снова.",
+    "minimum_score": "Минимальный результат для сдачи: {score}%"
+  },
+  "certificate": {
+    "title": "Сертификат об окончании",
+    "body": "Настоящим подтверждается, что %s, документ № %s, успешно прошёл курс: %s.",
+    "number": "Номер сертификата",
+    "date": "Дата",
+    "signature_placeholder": "Подпись / Печать"
+  },
+  "admin": {
+    "panel": "Панель администратора",
+    "users": "Пользователи",
+    "courses": "Курсы",
+    "add_course": "Добавить курс",
+    "questions": "Вопросы",
+    "materials": "Материалы",
+    "results": "Результаты",
+    "certificates": "Сертификаты",
+    "upload_signed_scan": "Загрузить подписанный скан",
+    "save": "Сохранить",
+    "language": "Язык"
+  },
+  "alerts": {
+    "course_not_found": "Выбранный курс не найден.",
+    "test_submitted": "Тест успешно отправлен.",
+    "certificate_generated": "Сертификат создан и сохранён.",
+    "registration_failed": "Не удалось завершить регистрацию. Попробуйте снова."
+  }
+}

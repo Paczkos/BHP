@@ -1,0 +1,89 @@
+{
+  "app": {
+    "title": "Platform Pelatihan K3",
+    "description": "Pelatihan K3 online lengkap dengan dukungan multibahasa untuk pekerja asing.",
+    "get_started": "Mulai"
+  },
+  "nav": {
+    "login": "Masuk",
+    "logout": "Keluar",
+    "register": "Daftar",
+    "dashboard": "Dasbor",
+    "courses": "Kursus",
+    "tests": "Tes",
+    "certificates": "Sertifikat"
+  },
+  "landing": {
+    "hero_title": "Onboarding aman untuk setiap karyawan",
+    "hero_subtitle": "Akses kursus, selesaikan tes, dan unduh sertifikat dalam bahasa pilihan Anda.",
+    "cta_login": "Masuk",
+    "cta_register": "Buat akun"
+  },
+  "auth": {
+    "login_required": "Silakan masuk untuk melanjutkan.",
+    "admin_required": "Diperlukan akses administrator.",
+    "login": "Masuk",
+    "register": "Registrasi",
+    "email": "E-mail",
+    "password": "Kata sandi",
+    "forgot_password": "Lupa kata sandi?",
+    "first_name": "Nama depan",
+    "last_name": "Nama belakang",
+    "document": "Paspor atau PESEL",
+    "language": "Bahasa pilihan",
+    "confirm_password": "Konfirmasi kata sandi",
+    "already_have_account": "Sudah punya akun?",
+    "no_account": "Belum punya akun?",
+    "create_account": "Buat akun",
+    "sign_in": "Masuk",
+    "success_register": "Akun berhasil dibuat. Silakan masuk.",
+    "invalid_credentials": "E-mail atau kata sandi salah.",
+    "password_mismatch": "Kata sandi tidak sama.",
+    "email_exists": "Akun dengan e-mail ini sudah ada."
+  },
+  "dashboard": {
+    "welcome": "Selamat datang, {name}!",
+    "available_courses": "Kursus tersedia",
+    "materials": "Materi pelatihan",
+    "start_test": "Mulai tes",
+    "your_results": "Hasil Anda",
+    "your_certificates": "Sertifikat Anda",
+    "score": "Nilai",
+    "status_passed": "Lulus",
+    "status_failed": "Tidak lulus",
+    "download": "Unduh"
+  },
+  "test": {
+    "heading": "Tes pengetahuan",
+    "submit": "Kirim jawaban",
+    "result_passed": "Selamat! Anda lulus tes dengan nilai {score}%.",
+    "result_failed": "Nilai Anda {score}%. Pelajari kembali materi dan coba lagi.",
+    "minimum_score": "Nilai minimum kelulusan: {score}%"
+  },
+  "certificate": {
+    "title": "Sertifikat Kelulusan",
+    "body": "Dengan ini dinyatakan bahwa %s, nomor dokumen %s, telah menyelesaikan kursus: %s.",
+    "number": "Nomor sertifikat",
+    "date": "Tanggal",
+    "signature_placeholder": "Tanda tangan / Stempel"
+  },
+  "admin": {
+    "panel": "Panel admin",
+    "users": "Pengguna",
+    "courses": "Kursus",
+    "add_course": "Tambah kursus",
+    "questions": "Pertanyaan",
+    "materials": "Materi",
+    "results": "Hasil",
+    "certificates": "Sertifikat",
+    "upload_signed_scan": "Unggah scan bertanda tangan",
+    "save": "Simpan",
+    "language": "Bahasa"
+  },
+  "alerts": {
+    "course_not_found": "Kursus yang dipilih tidak ditemukan.",
+    "test_submitted": "Tes berhasil dikirim.",
+    "certificate_generated": "Sertifikat telah dibuat dan disimpan.",
+    "registration_failed": "Pendaftaran gagal. Silakan coba lagi."
+  }
+}
