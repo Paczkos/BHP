@@ -8,6 +8,7 @@ class FPDF
     private float $leftMargin = 15.0;
     private float $topMargin = 15.0;
     private float $rightMargin = 15.0;
+    private float $bottomMargin = 15.0;
     private float $currentX = 0.0;
     private float $currentY = 0.0;
     private float $lineHeight = 6.0;
@@ -20,6 +21,11 @@ class FPDF
     private array $fonts = [];
     private bool $autoPageBreak = false;
     private float $autoPageBreakMargin = 20.0;
+
+    public float $lMargin = 15.0;
+    public float $tMargin = 15.0;
+    public float $rMargin = 15.0;
+    public float $bMargin = 15.0;
 
     public function __construct(string $orientation = 'P', string $unit = 'mm', string $size = 'A4')
     {
@@ -61,12 +67,17 @@ class FPDF
         $this->rightMargin = $right === null ? $this->leftMargin : max(0.0, $right);
         $this->currentX = $this->leftMargin;
         $this->currentY = $this->topMargin;
+
+        $this->lMargin = $this->leftMargin;
+        $this->tMargin = $this->topMargin;
+        $this->rMargin = $this->rightMargin;
     }
 
     public function SetAutoPageBreak(bool $auto, float $margin = 0.0): void
     {
         $this->autoPageBreak = $auto;
         $this->autoPageBreakMargin = $margin;
+        $this->bMargin = $margin;
     }
 
     public function AddPage(string $orientation = '', string $size = ''): void
@@ -236,6 +247,26 @@ class FPDF
 
         $this->currentY += $h;
         $this->currentX = $this->leftMargin;
+    }
+
+    public function GetPageWidth(): float
+    {
+        return $this->pageWidthMm;
+    }
+
+    public function GetPageHeight(): float
+    {
+        return $this->pageHeightMm;
+    }
+
+    public function GetX(): float
+    {
+        return $this->currentX;
+    }
+
+    public function GetY(): float
+    {
+        return $this->currentY;
     }
 
     public function Output(string $dest = '', string $name = '', bool $isUTF8 = false): ?string
