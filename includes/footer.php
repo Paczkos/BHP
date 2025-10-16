@@ -8,6 +8,6 @@
         </label>
     </div>
 </footer>
-<script src="/BHP/assets/js/app.js" defer></script>
+<script src="<?= asset_url('assets/js/app.js') ?>" defer></script>
 </body>
 </html>

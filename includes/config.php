@@ -29,8 +29,23 @@ if (!defined('APP_NAME')) {
     define('APP_NAME', config_env('APP_NAME', 'Platforma BHP'));
 }
 
+if (!function_exists('config_default_app_url')) {
+    function config_default_app_url(): string
+    {
+        if (!empty($_SERVER['HTTP_HOST'])) {
+            $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' && $_SERVER['HTTPS'] !== '0') ? 'https' : 'http';
+            $scriptDir = dirname($_SERVER['SCRIPT_NAME'] ?? '') ?: '';
+            $normalizedDir = rtrim(str_replace('\\', '/', $scriptDir), '/');
+
+            return rtrim($scheme . '://' . $_SERVER['HTTP_HOST'] . ($normalizedDir ? '/' . ltrim($normalizedDir, '/') : ''), '/') ?: 'http://localhost/BHP/public';
+        }
+
+        return 'http://localhost/BHP/public';
+    }
+}
+
 if (!defined('APP_URL')) {
-    define('APP_URL', config_env('APP_URL', 'http://localhost/BHP/public'));
+    define('APP_URL', config_env('APP_URL', config_default_app_url()));
 }
 
 if (!defined('ADMIN_EMAIL')) {
