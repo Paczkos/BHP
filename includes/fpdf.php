@@ -21,6 +21,9 @@ class FPDF
     private array $fonts = [];
     private bool $autoPageBreak = false;
     private float $autoPageBreakMargin = 20.0;
+    private array $drawColor = [0, 0, 0];
+    private array $fillColor = [255, 255, 255];
+    private float $lineWidth = 0.2;
 
     public float $lMargin = 15.0;
     public float $tMargin = 15.0;
@@ -123,17 +126,35 @@ class FPDF
 
     public function SetDrawColor(int $r, ?int $g = null, ?int $b = null): void
     {
-        // Drawing operations are not used by the certificate layout.
+        if ($g === null || $b === null) {
+            $g = $r;
+            $b = $r;
+        }
+
+        $this->drawColor = [
+            max(0, min(255, $r)),
+            max(0, min(255, $g)),
+            max(0, min(255, $b)),
+        ];
     }
 
     public function SetFillColor(int $r, ?int $g = null, ?int $b = null): void
     {
-        // Fill operations are not used by the certificate layout.
+        if ($g === null || $b === null) {
+            $g = $r;
+            $b = $r;
+        }
+
+        $this->fillColor = [
+            max(0, min(255, $r)),
+            max(0, min(255, $g)),
+            max(0, min(255, $b)),
+        ];
     }
 
     public function SetLineWidth(float $width): void
     {
-        // Line drawing is not required for the generated certificates.
+        $this->lineWidth = max(0.01, $width);
     }
 
     public function Cell(float $w, float $h = 0.0, string $txt = '', int $border = 0, int $ln = 0, string $align = '', bool $fill = false): void
@@ -168,7 +189,13 @@ class FPDF
         $colorCmd = $this->getTextColorCommand();
         $escaped = $this->escapeText($encodedText);
 
-        $command = sprintf(
+        $commands = [];
+
+        if ($fill || $border) {
+            $commands[] = $this->buildRectCommand($this->currentX, $this->currentY, $w, $h, $fill, $border > 0);
+        }
+
+        $commands[] = sprintf(
             "%s\nBT %s %.2F Tf 1 0 0 1 %.2F %.2F Tm (%s) Tj ET",
             $colorCmd,
             $fontName,
@@ -178,7 +205,11 @@ class FPDF
             $escaped
         );
 
-        $this->pages[$this->currentPage][] = $command;
+        foreach ($commands as $command) {
+            if ($command !== '') {
+                $this->pages[$this->currentPage][] = $command;
+            }
+        }
 
         if ($ln > 0) {
             $this->currentX = $this->leftMargin;
@@ -266,6 +297,38 @@ class FPDF
     public function GetY(): float
     {
         return $this->currentY;
+    }
+
+    public function SetX(float $x): void
+    {
+        $this->currentX = $x;
+    }
+
+    public function SetY(float $y): void
+    {
+        $this->currentY = $y;
+    }
+
+    public function SetXY(float $x, float $y): void
+    {
+        $this->currentX = $x;
+        $this->currentY = $y;
+    }
+
+    public function Rect(float $x, float $y, float $w, float $h, string $style = 'S'): void
+    {
+        if ($this->currentPage === 0) {
+            $this->AddPage();
+        }
+
+        $style = strtoupper($style);
+        $doFill = str_contains($style, 'F');
+        $doDraw = str_contains($style, 'D') || $style === 'S' || $style === '';
+
+        $command = $this->buildRectCommand($x, $y, $w, $h, $doFill, $doDraw);
+        if ($command !== '') {
+            $this->pages[$this->currentPage][] = $command;
+        }
     }
 
     public function Output(string $dest = '', string $name = '', bool $isUTF8 = false): ?string
@@ -393,6 +456,13 @@ class FPDF
         $family = strtolower($family);
         $style = strtoupper($style);
 
+        $compact = str_replace(' ', '', $family);
+        if ($compact === 'playfairdisplay') {
+            $family = 'times';
+        } elseif ($compact === 'poppins') {
+            $family = 'helvetica';
+        }
+
         switch ($family) {
             case 'times':
                 if (str_contains($style, 'B') && str_contains($style, 'I')) {
@@ -440,6 +510,23 @@ class FPDF
         return sprintf('%.3F %.3F %.3F rg', $r / 255, $g / 255, $b / 255);
     }
 
+    private function getDrawColorCommand(): string
+    {
+        [$r, $g, $b] = $this->drawColor;
+        return sprintf('%.3F %.3F %.3F RG', $r / 255, $g / 255, $b / 255);
+    }
+
+    private function getFillColorCommand(): string
+    {
+        [$r, $g, $b] = $this->fillColor;
+        return sprintf('%.3F %.3F %.3F rg', $r / 255, $g / 255, $b / 255);
+    }
+
+    private function getLineWidthCommand(): string
+    {
+        return sprintf('%.2F w', $this->lineWidth);
+    }
+
     private function escapeText(string $text): string
     {
         $escaped = str_replace(['\\', '(', ')'], ['\\\\', '\\(', '\\)'], $text);
@@ -463,5 +550,37 @@ class FPDF
         $length = strlen($text);
         $averageGlyphWidthPt = $this->fontSizePt * 0.5;
         return $averageGlyphWidthPt * $length * (25.4 / 72);
+    }
+
+    private function buildRectCommand(float $x, float $y, float $w, float $h, bool $fill, bool $draw): string
+    {
+        if (!$fill && !$draw) {
+            return '';
+        }
+
+        $xPt = $this->mmToPt($x);
+        $yPt = $this->mmToPt($this->pageHeightMm - $y - $h);
+        $wPt = $this->mmToPt($w);
+        $hPt = $this->mmToPt($h);
+
+        $commands = [];
+        if ($fill) {
+            $commands[] = $this->getFillColorCommand();
+        }
+        if ($draw) {
+            $commands[] = $this->getDrawColorCommand();
+            $commands[] = $this->getLineWidthCommand();
+        }
+
+        $path = sprintf('%.2F %.2F %.2F %.2F re', $xPt, $yPt, $wPt, $hPt);
+        if ($fill && $draw) {
+            $commands[] = $path . ' B';
+        } elseif ($fill) {
+            $commands[] = $path . ' f';
+        } else {
+            $commands[] = $path . ' S';
+        }
+
+        return implode("\n", $commands);
     }
 }
