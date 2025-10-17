@@ -11,7 +11,7 @@ function generate_certificate_pdf(
     int $scorePercent
 ): string {
     $pdf = new FPDF('L', 'mm', 'A4');
-    $pdf->SetMargins(35, 36, 35);
+    $pdf->SetMargins(32, 28, 32);
     $pdf->SetAutoPageBreak(false);
     $pdf->AddPage();
 
@@ -38,17 +38,17 @@ function generate_certificate_pdf(
     $pdf->Cell($usableWidth, 30, strtoupper(APP_NAME), 0, 1, 'C');
 
     // Title and subtitle
-    $pdf->SetXY($pdf->lMargin, $pdf->tMargin + 6);
+    $pdf->SetXY($pdf->lMargin, $pdf->tMargin + 4);
     $pdf->SetTextColor(40, 40, 45);
-    $pdf->SetFont('Playfair Display', 'B', 28);
-    $pdf->Cell($usableWidth, 16, t('certificate.bilingual_title'), 0, 1, 'C');
+    $pdf->SetFont('Playfair Display', 'B', 26);
+    $pdf->Cell($usableWidth, 14, t('certificate.bilingual_title'), 0, 1, 'C');
 
-    $pdf->SetFont('Poppins', '', 12);
+    $pdf->SetFont('Poppins', '', 11);
     $pdf->SetTextColor(90, 90, 95);
     $pdf->Cell($usableWidth, 8, t('certificate.subtitle'), 0, 1, 'C');
 
     // Recipient name block
-    $pdf->Ln(12);
+    $pdf->Ln(10);
     $pdf->SetFont('Poppins', '', 11);
     $pdf->SetTextColor(120, 120, 125);
     $pdf->Cell($usableWidth, 6, t('certificate.presented_to'), 0, 1, 'C');
@@ -57,7 +57,7 @@ function generate_certificate_pdf(
     $nameBoxTop = $pdf->GetY();
     $pdf->SetDrawColor(176, 150, 96);
     $pdf->SetLineWidth(0.4);
-    $pdf->Rect($pdf->lMargin + 5, $nameBoxTop, $usableWidth - 10, 22, 'D');
+    $pdf->Rect($pdf->lMargin + 4, $nameBoxTop, $usableWidth - 8, 20, 'D');
 
     $fullName = trim($user['first_name'] . ' ' . $user['last_name']);
     if ($fullName === '') {
@@ -69,17 +69,17 @@ function generate_certificate_pdf(
         $displayName = strtoupper($fullName);
     }
 
-    $pdf->SetFont('Playfair Display', 'B', 34);
+    $pdf->SetFont('Playfair Display', 'B', 30);
     $pdf->SetTextColor(40, 40, 45);
     $pdf->SetXY($pdf->lMargin, $nameBoxTop + 4);
     $pdf->Cell($usableWidth, 14, $displayName, 0, 1, 'C');
 
-    $pdf->SetY($nameBoxTop + 22);
+    $pdf->SetY($nameBoxTop + 20);
     $pdf->SetFont('Poppins', '', 10);
     $pdf->SetTextColor(100, 100, 105);
     $pdf->Cell(
         $usableWidth,
-        6,
+        5.5,
         sprintf(t('certificate.document_line'), $user['passport_or_pesel'] ?: t('certificate.not_available')),
         0,
         1,
@@ -87,8 +87,8 @@ function generate_certificate_pdf(
     );
 
     // Statement paragraph
-    $pdf->Ln(6);
-    $pdf->SetFont('Poppins', '', 11);
+    $pdf->Ln(5);
+    $pdf->SetFont('Poppins', '', 10.5);
     $pdf->SetTextColor(70, 70, 80);
     $statement = sprintf(
         t('certificate.statement'),
@@ -97,11 +97,11 @@ function generate_certificate_pdf(
         $testDate,
         $scorePercent
     );
-    $pdf->MultiCell($usableWidth, 6.5, $statement, 0, 'C');
+    $pdf->MultiCell($usableWidth, 5.8, $statement, 0, 'C');
 
     // Detail grid
-    $pdf->Ln(6);
-    $pdf->SetFont('Poppins', 'B', 12);
+    $pdf->Ln(5);
+    $pdf->SetFont('Poppins', 'B', 11.5);
     $pdf->SetTextColor(45, 45, 50);
     $pdf->Cell($usableWidth, 7, t('certificate.details_heading'), 0, 1, 'C');
     $pdf->Ln(3);
@@ -121,8 +121,8 @@ function generate_certificate_pdf(
         ],
     ];
 
-    $columnWidth = ($usableWidth - 12) / 2;
-    $columnGap = 12;
+    $columnWidth = ($usableWidth - 10) / 2;
+    $columnGap = 10;
 
     foreach ($detailRows as $row) {
         $rowTop = $pdf->GetY();
@@ -144,42 +144,42 @@ function generate_certificate_pdf(
 
             $afterLabelY = $pdf->GetY();
             $pdf->SetXY($x, $afterLabelY);
-            $pdf->SetFont('Poppins', '', 12);
+            $pdf->SetFont('Poppins', '', 11.5);
             $pdf->SetTextColor(45, 45, 50);
-            $pdf->MultiCell($columnWidth, 6.5, $value, 0, $align);
+            $pdf->MultiCell($columnWidth, 5.8, $value, 0, $align);
             $rowBottom = max($rowBottom, $pdf->GetY());
         }
 
-        $pdf->SetY($rowBottom + 4);
+        $pdf->SetY($rowBottom + 3.5);
     }
 
     // Signature and stamp area
-    $pdf->Ln(6);
+    $pdf->Ln(5);
     $signatureTop = $pdf->GetY();
-    $boxWidth = ($usableWidth - 20) / 2;
-    $leftX = $pdf->lMargin + 5;
-    $rightX = $leftX + $boxWidth + 10;
+    $boxWidth = ($usableWidth - 18) / 2;
+    $leftX = $pdf->lMargin + 4;
+    $rightX = $leftX + $boxWidth + 8;
 
     $pdf->SetDrawColor(176, 150, 96);
     $pdf->SetLineWidth(0.35);
-    $pdf->Rect($leftX, $signatureTop, $boxWidth, 24, 'D');
-    $pdf->Rect($rightX, $signatureTop, $boxWidth, 24, 'D');
+    $pdf->Rect($leftX, $signatureTop, $boxWidth, 20, 'D');
+    $pdf->Rect($rightX, $signatureTop, $boxWidth, 20, 'D');
 
     $pdf->SetFont('Poppins', '', 10);
     $pdf->SetTextColor(115, 115, 120);
-    $pdf->SetXY($leftX + 4, $signatureTop + 4);
-    $pdf->MultiCell($boxWidth - 8, 5.5, t('certificate.company_placeholder'), 0, 'L');
+    $pdf->SetXY($leftX + 4, $signatureTop + 3.5);
+    $pdf->MultiCell($boxWidth - 8, 5.2, t('certificate.company_placeholder'), 0, 'L');
 
-    $pdf->SetXY($rightX + 4, $signatureTop + 4);
-    $pdf->MultiCell($boxWidth - 8, 5.5, t('certificate.trainer_placeholder'), 0, 'L');
+    $pdf->SetXY($rightX + 4, $signatureTop + 3.5);
+    $pdf->MultiCell($boxWidth - 8, 5.2, t('certificate.trainer_placeholder'), 0, 'L');
 
-    $pdf->SetY($signatureTop + 26);
+    $pdf->SetY($signatureTop + 21);
     $pdf->SetFont('Poppins', '', 10);
     $pdf->SetTextColor(100, 100, 105);
-    $pdf->Cell($usableWidth, 6, t('certificate.stamp_instruction'), 0, 1, 'C');
+    $pdf->Cell($usableWidth, 5.5, t('certificate.stamp_instruction'), 0, 1, 'C');
 
-    $pdf->SetFont('Poppins', 'I', 10);
-    $pdf->Cell($usableWidth, 6, t('certificate.signature_placeholder'), 0, 1, 'C');
+    $pdf->SetFont('Poppins', 'I', 9.5);
+    $pdf->Cell($usableWidth, 5.5, t('certificate.signature_placeholder'), 0, 1, 'C');
 
     $filename = 'certificate_' . $certificateNumber . '.pdf';
     $filePath = __DIR__ . '/../certificates/' . $filename;
