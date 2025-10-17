@@ -160,9 +160,9 @@ function generate_certificate_pdf(
     }
 
     // Signature and stamp area
-    $pdf->Ln(4);
+    $pdf->Ln(5);
     $currentY = $pdf->GetY();
-    $signatureTopLimit = $pageHeight - $pdf->bMargin - 48;
+    $signatureTopLimit = $pageHeight - $pdf->bMargin - 40;
     if ($currentY > $signatureTopLimit) {
         $currentY = $signatureTopLimit;
     }
@@ -174,18 +174,19 @@ function generate_certificate_pdf(
 
     $pdf->SetDrawColor(176, 150, 96);
     $pdf->SetLineWidth(0.35);
-    $pdf->Rect($leftX, $signatureTop, $boxWidth, 20, 'D');
-    $pdf->Rect($rightX, $signatureTop, $boxWidth, 20, 'D');
+    $boxHeight = 16;
+    $pdf->Rect($leftX, $signatureTop, $boxWidth, $boxHeight, 'D');
+    $pdf->Rect($rightX, $signatureTop, $boxWidth, $boxHeight, 'D');
 
     $pdf->SetFont('Poppins', '', 10);
     $pdf->SetTextColor(115, 115, 120);
-    $pdf->SetXY($leftX + 4, $signatureTop + 3.5);
-    $pdf->MultiCell($boxWidth - 8, 5.2, t('certificate.company_placeholder'), 0, 'L');
+    $pdf->SetXY($leftX + 4, $signatureTop + 3);
+    $pdf->MultiCell($boxWidth - 8, 4.8, t('certificate.company_placeholder'), 0, 'L');
 
-    $pdf->SetXY($rightX + 4, $signatureTop + 3.5);
-    $pdf->MultiCell($boxWidth - 8, 5.2, t('certificate.trainer_placeholder'), 0, 'L');
+    $pdf->SetXY($rightX + 4, $signatureTop + 3);
+    $pdf->MultiCell($boxWidth - 8, 4.8, t('certificate.trainer_placeholder'), 0, 'L');
 
-    $pdf->SetY($signatureTop + 20);
+    $pdf->SetY($signatureTop + $boxHeight + 3);
     $pdf->SetFont('Poppins', '', 10);
     $pdf->SetTextColor(100, 100, 105);
     $pdf->Cell($usableWidth, 5.5, t('certificate.stamp_instruction'), 0, 1, 'C');
