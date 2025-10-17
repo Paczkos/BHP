@@ -33,15 +33,20 @@ function generate_certificate_pdf(
 
     // Watermark
     $pdf->SetTextColor(215, 207, 190);
-    $pdf->SetFont('Playfair Display', 'B', 60);
-    $pdf->SetXY($pdf->lMargin, ($pageHeight / 2) - 25);
-    $pdf->Cell($usableWidth, 30, strtoupper(APP_NAME), 0, 1, 'C');
+    $pdf->SetFont('Playfair Display', 'B', 46);
+    $pdf->SetXY($pdf->lMargin, ($pageHeight / 2) - 30);
+    $watermark = strtoupper(APP_NAME);
+    $watermark = preg_replace('/\s*–\s*/u', "\n", $watermark);
+    $pdf->MultiCell($usableWidth, 18, $watermark, 0, 'C');
 
     // Title and subtitle
     $pdf->SetXY($pdf->lMargin, $pdf->tMargin + 4);
     $pdf->SetTextColor(40, 40, 45);
-    $pdf->SetFont('Playfair Display', 'B', 26);
-    $pdf->Cell($usableWidth, 14, t('certificate.bilingual_title'), 0, 1, 'C');
+    $pdf->SetFont('Playfair Display', 'B', 24);
+    $title = t('certificate.bilingual_title');
+    $title = str_replace(' / ', "\n", $title);
+    $pdf->MultiCell($usableWidth, 12, $title, 0, 'C');
+    $pdf->Ln(1.5);
 
     $pdf->SetFont('Poppins', '', 11);
     $pdf->SetTextColor(90, 90, 95);
