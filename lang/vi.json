@@ -128,8 +128,8 @@
     "trainee_heading": "Thông tin học viên",
     "trainee_name": "Họ và tên",
     "trainee_document": "Số giấy tờ",
-    "company_placeholder": "Tên công ty / Khách hàng (điền sau khi in)",
-    "trainer_placeholder": "Người đào tạo / Kiểm tra (điền sau khi in)",
+    "company_placeholder": "Tên công ty / Khách hàng",
+    "trainer_placeholder": "Người đào tạo / Kiểm tra",
     "stamp_instruction": "Vui lòng đóng dấu xác nhận trong ô bên dưới",
     "signature_placeholder": "Chữ ký / Con dấu",
     "not_available": "Không có dữ liệu"

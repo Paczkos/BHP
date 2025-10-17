@@ -128,8 +128,8 @@
     "trainee_heading": "Participant details",
     "trainee_name": "Full name",
     "trainee_document": "Document ID",
-    "company_placeholder": "Company / Client (to be completed after printing)",
-    "trainer_placeholder": "Trainer / Verifier (to be completed after printing)",
+    "company_placeholder": "Company / Client",
+    "trainer_placeholder": "Trainer / Verifier",
     "stamp_instruction": "Please affix the verification stamp below",
     "signature_placeholder": "Signature / Stamp",
     "not_available": "Not recorded"

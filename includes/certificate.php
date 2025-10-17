@@ -166,7 +166,14 @@ function generate_certificate_pdf(
     if ($currentY > $signatureTopLimit) {
         $currentY = $signatureTopLimit;
     }
-    $pdf->SetY($currentY);
+
+    $desiredOffset = 8;
+    $targetY = $currentY + $desiredOffset;
+    if ($targetY > $signatureTopLimit) {
+        $targetY = $signatureTopLimit;
+    }
+
+    $pdf->SetY($targetY);
     $signatureTop = $pdf->GetY();
     $boxWidth = ($usableWidth - 18) / 2;
     $leftX = $pdf->lMargin + 4;

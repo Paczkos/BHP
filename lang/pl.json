@@ -128,8 +128,8 @@
     "trainee_heading": "Dane uczestnika",
     "trainee_name": "Imię i nazwisko",
     "trainee_document": "Numer dokumentu",
-    "company_placeholder": "Nazwa firmy / Zleceniodawca (uzupełnić po wydruku)",
-    "trainer_placeholder": "Osoba szkoląca / Weryfikująca (uzupełnić po wydruku)",
+    "company_placeholder": "Nazwa firmy / Zleceniodawca",
+    "trainer_placeholder": "Osoba szkoląca / Weryfikująca",
     "stamp_instruction": "Prosimy o przybicie pieczątki w wyznaczonym miejscu",
     "signature_placeholder": "Podpis / Pieczęć",
     "not_available": "Brak danych"

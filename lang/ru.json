@@ -128,8 +128,8 @@
     "trainee_heading": "Данные участника",
     "trainee_name": "Фамилия и имя",
     "trainee_document": "Номер документа",
-    "company_placeholder": "Название компании / заказчика (заполнить после печати)",
-    "trainer_placeholder": "Инструктор / проверяющий (заполнить после печати)",
+    "company_placeholder": "Название компании / заказчика",
+    "trainer_placeholder": "Инструктор / проверяющий",
     "stamp_instruction": "Пожалуйста поставьте печать проверки в указанном поле",
     "signature_placeholder": "Подпись / Печать",
     "not_available": "Нет данных"
