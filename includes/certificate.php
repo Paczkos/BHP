@@ -11,8 +11,9 @@ function generate_certificate_pdf(
     int $scorePercent
 ): string {
     $pdf = new FPDF('L', 'mm', 'A4');
-    $pdf->SetMargins(32, 28, 32);
+    $pdf->SetMargins(32, 22, 32);
     $pdf->SetAutoPageBreak(false);
+    $pdf->bMargin = 24;
     $pdf->AddPage();
 
     $pageWidth = $pdf->GetPageWidth();
@@ -40,7 +41,7 @@ function generate_certificate_pdf(
     $pdf->MultiCell($usableWidth, 18, $watermark, 0, 'C');
 
     // Title and subtitle
-    $pdf->SetXY($pdf->lMargin, $pdf->tMargin + 4);
+    $pdf->SetXY($pdf->lMargin, $pdf->tMargin + 2);
     $pdf->SetTextColor(40, 40, 45);
     $pdf->SetFont('Playfair Display', 'B', 24);
     $title = t('certificate.bilingual_title');
@@ -53,7 +54,7 @@ function generate_certificate_pdf(
     $pdf->Cell($usableWidth, 8, t('certificate.subtitle'), 0, 1, 'C');
 
     // Recipient name block
-    $pdf->Ln(10);
+    $pdf->Ln(7);
     $pdf->SetFont('Poppins', '', 11);
     $pdf->SetTextColor(120, 120, 125);
     $pdf->Cell($usableWidth, 6, t('certificate.presented_to'), 0, 1, 'C');
@@ -92,7 +93,7 @@ function generate_certificate_pdf(
     );
 
     // Statement paragraph
-    $pdf->Ln(5);
+    $pdf->Ln(4);
     $pdf->SetFont('Poppins', '', 10.5);
     $pdf->SetTextColor(70, 70, 80);
     $statement = sprintf(
@@ -105,7 +106,7 @@ function generate_certificate_pdf(
     $pdf->MultiCell($usableWidth, 5.8, $statement, 0, 'C');
 
     // Detail grid
-    $pdf->Ln(5);
+    $pdf->Ln(4);
     $pdf->SetFont('Poppins', 'B', 11.5);
     $pdf->SetTextColor(45, 45, 50);
     $pdf->Cell($usableWidth, 7, t('certificate.details_heading'), 0, 1, 'C');
@@ -159,7 +160,13 @@ function generate_certificate_pdf(
     }
 
     // Signature and stamp area
-    $pdf->Ln(5);
+    $pdf->Ln(4);
+    $currentY = $pdf->GetY();
+    $signatureTopLimit = $pageHeight - $pdf->bMargin - 48;
+    if ($currentY > $signatureTopLimit) {
+        $currentY = $signatureTopLimit;
+    }
+    $pdf->SetY($currentY);
     $signatureTop = $pdf->GetY();
     $boxWidth = ($usableWidth - 18) / 2;
     $leftX = $pdf->lMargin + 4;
@@ -178,7 +185,7 @@ function generate_certificate_pdf(
     $pdf->SetXY($rightX + 4, $signatureTop + 3.5);
     $pdf->MultiCell($boxWidth - 8, 5.2, t('certificate.trainer_placeholder'), 0, 'L');
 
-    $pdf->SetY($signatureTop + 21);
+    $pdf->SetY($signatureTop + 20);
     $pdf->SetFont('Poppins', '', 10);
     $pdf->SetTextColor(100, 100, 105);
     $pdf->Cell($usableWidth, 5.5, t('certificate.stamp_instruction'), 0, 1, 'C');
