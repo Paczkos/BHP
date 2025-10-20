@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/header.php';
+require_once __DIR__ . '/../includes/xlsx.php';
 require_admin();
 $pdo = get_db_connection();
 $courseId = (int)($_GET['course_id'] ?? 0);
@@ -48,6 +49,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         flash('success', t('admin.test_settings_updated'));
+        redirect('questions.php?course_id=' . $courseId);
+    } elseif (isset($_POST['import_questions'])) {
+        if (empty($_FILES['questions_file']) || !is_uploaded_file($_FILES['questions_file']['tmp_name'])) {
+            flash('error', t('admin.import_questions_error_upload'));
+            redirect('questions.php?course_id=' . $courseId);
+        }
+
+        $file = $_FILES['questions_file'];
+
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            flash('error', t('admin.import_questions_error_upload'));
+            redirect('questions.php?course_id=' . $courseId);
+        }
+
+        try {
+            $batch = parse_questions_excel($file['tmp_name']);
+        } catch (RuntimeException $exception) {
+            flash('error', $exception->getMessage());
+            redirect('questions.php?course_id=' . $courseId);
+        }
+
+        if (empty($batch)) {
+            flash('error', t('admin.import_questions_error_no_questions'));
+            redirect('questions.php?course_id=' . $courseId);
+        }
+
+        $pdo->beginTransaction();
+        try {
+            foreach ($batch as $item) {
+                $stmt = $pdo->prepare('INSERT INTO questions (course_id, question_text, language) VALUES (:course_id, :question_text, :language)');
+                $stmt->execute([
+                    'course_id' => $courseId,
+                    'question_text' => sanitize($item['question_text']),
+                    'language' => $course['language'],
+                ]);
+                $questionId = (int)$pdo->lastInsertId();
+
+                foreach ($item['answers'] as $index => $answerText) {
+                    $answerStmt = $pdo->prepare('INSERT INTO answers (question_id, answer_text, is_correct) VALUES (:question_id, :answer_text, :is_correct)');
+                    $answerStmt->execute([
+                        'question_id' => $questionId,
+                        'answer_text' => sanitize($answerText),
+                        'is_correct' => ($index === $item['correct_index']) ? 1 : 0,
+                    ]);
+                }
+            }
+
+            $pdo->commit();
+            flash('success', t('admin.import_questions_success', ['count' => (string)count($batch)]));
+        } catch (Throwable $exception) {
+            $pdo->rollBack();
+            flash('error', t('admin.import_questions_error_persist'));
+        }
+
         redirect('questions.php?course_id=' . $courseId);
     }
 
@@ -128,6 +183,23 @@ if (!empty($questions)) {
         </div>
         <div class="form-actions">
             <button class="btn btn-primary" type="submit" name="update_settings" value="1"><?= t('admin.save_test_settings') ?></button>
+        </div>
+    </form>
+</div>
+
+<div class="card admin-card admin-card--form">
+    <div class="admin-card-header">
+        <h2><?= t('admin.import_questions_heading') ?></h2>
+        <p><?= t('admin.import_questions_description') ?></p>
+    </div>
+    <form method="post" enctype="multipart/form-data" class="form-vertical">
+        <div class="form-field">
+            <label for="questions-file"><?= t('admin.import_questions_file_label') ?></label>
+            <input type="file" id="questions-file" name="questions_file" accept=".xlsx" required>
+            <p class="form-hint"><?= t('admin.import_questions_hint') ?></p>
+        </div>
+        <div class="form-actions">
+            <button class="btn btn-outline" type="submit" name="import_questions" value="1"><?= t('admin.import_questions_submit') ?></button>
         </div>
     </form>
 </div>

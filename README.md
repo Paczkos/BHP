@@ -29,6 +29,7 @@ Kompletny szkielet aplikacji szkoleniowej BHP dla cudzoziemców firmowany przez 
 - Panel kursanta z materiałami, testami i certyfikatami PDF.
 - Edycja profilu kursanta (dane osobowe, język, hasło).
 - Panel administratora (użytkownicy, kursy, pytania, wyniki, certyfikaty).
+- Import pytań do testów z pliku Excel (.xlsx) oraz edycja i usuwanie pytań pojedynczych.
 - Generowanie certyfikatów PDF oraz przesyłanie podpisanych skanów.
 - Tryb ciemny (localStorage) i automatyczne powiadomienia e-mail (funkcja `mail`).
 
