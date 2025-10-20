@@ -73,17 +73,28 @@ $_SESSION['current_test'] = [
     <div class="card" style="margin-top:2rem;">
         <h1><?= t('test.heading') ?> – <?= htmlspecialchars($course['title']) ?></h1>
         <p><?= t('test.minimum_score', ['score' => $passingScore]) ?></p>
-        <form method="post">
+        <form method="post" class="test-form">
             <input type="hidden" name="course_id" value="<?= $course['id'] ?>">
             <?php foreach ($questions as $index => $question): ?>
-                <div style="margin:1.5rem 0;">
-                    <strong><?= ($index + 1) ?>. <?= htmlspecialchars($question['question_text']) ?></strong>
-                    <?php foreach ($question['answers'] as $answer): ?>
-                        <label style="display:block; margin-top:0.5rem;">
-                            <input type="radio" name="answers[<?= $question['id'] ?>]" value="<?= $answer['id'] ?>" required>
-                            <?= htmlspecialchars($answer['answer_text']) ?>
-                        </label>
-                    <?php endforeach; ?>
+                <div class="test-question">
+                    <div class="test-question-title">
+                        <span class="test-question-index"><?= ($index + 1) ?>.</span>
+                        <span class="test-question-text"><?= htmlspecialchars($question['question_text']) ?></span>
+                    </div>
+                    <div class="answer-group">
+                        <?php foreach ($question['answers'] as $answer): ?>
+                            <label class="answer-option">
+                                <input
+                                    type="radio"
+                                    name="answers[<?= $question['id'] ?>]"
+                                    value="<?= $answer['id'] ?>"
+                                    required
+                                >
+                                <span class="answer-indicator" aria-hidden="true"></span>
+                                <span class="answer-text"><?= htmlspecialchars($answer['answer_text']) ?></span>
+                            </label>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             <?php endforeach; ?>
             <button type="submit" class="btn btn-primary"><?= t('test.submit') ?></button>

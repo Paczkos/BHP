@@ -44,3 +44,27 @@ document.querySelectorAll('form[data-confirm]').forEach((form) => {
     }
   });
 });
+
+document.querySelectorAll('.answer-group').forEach((group) => {
+  const inputs = group.querySelectorAll("input[type='radio']");
+  inputs.forEach((input) => {
+    const option = input.closest('.answer-option');
+    if (!option) {
+      return;
+    }
+
+    if (input.checked) {
+      option.classList.add('selected');
+    }
+
+    input.addEventListener('change', () => {
+      inputs.forEach((peer) => {
+        const peerOption = peer.closest('.answer-option');
+        if (peerOption) {
+          peerOption.classList.remove('selected');
+        }
+      });
+      option.classList.add('selected');
+    });
+  });
+});
