@@ -31,6 +31,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         redirect('questions.php?course_id=' . $courseId);
+    } elseif (isset($_POST['update_settings'])) {
+        $questionLimit = (int)($_POST['question_limit'] ?? $course['question_limit']);
+        $passingScore = (int)($_POST['passing_score'] ?? $course['passing_score']);
+
+        $questionLimit = max(1, min(50, $questionLimit));
+        $passingScore = max(1, min(100, $passingScore));
+
+        ensure_course_test_settings_columns();
+
+        $updateStmt = $pdo->prepare('UPDATE courses SET question_limit = :question_limit, passing_score = :passing_score WHERE id = :id');
+        $updateStmt->execute([
+            'question_limit' => $questionLimit,
+            'passing_score' => $passingScore,
+            'id' => $courseId,
+        ]);
+
+        flash('success', t('admin.test_settings_updated'));
+        redirect('questions.php?course_id=' . $courseId);
     }
 
     $questionText = sanitize($_POST['question_text'] ?? '');
@@ -89,6 +107,30 @@ if (!empty($questions)) {
 <?php if ($message = flash('error')): ?>
     <div class="alert error"><?= $message ?></div>
 <?php endif; ?>
+
+<div class="card admin-card admin-card--form">
+    <div class="admin-card-header">
+        <h2><?= t('admin.test_settings_heading') ?></h2>
+        <p><?= t('admin.test_settings_description') ?></p>
+    </div>
+    <form method="post" class="form-vertical">
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="question-limit"><?= t('admin.question_limit_label') ?></label>
+                <input type="number" id="question-limit" name="question_limit" min="1" max="50" value="<?= htmlspecialchars($course['question_limit']) ?>" required>
+                <p class="form-hint"><?= t('admin.question_limit_hint') ?></p>
+            </div>
+            <div class="form-field">
+                <label for="passing-score"><?= t('admin.passing_score_label') ?></label>
+                <input type="number" id="passing-score" name="passing_score" min="1" max="100" value="<?= htmlspecialchars($course['passing_score']) ?>" required>
+                <p class="form-hint"><?= t('admin.passing_score_hint') ?></p>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit" name="update_settings" value="1"><?= t('admin.save_test_settings') ?></button>
+        </div>
+    </form>
+</div>
 
 <div class="card admin-card admin-card--form">
     <div class="admin-card-header">

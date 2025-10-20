@@ -25,6 +25,8 @@ CREATE TABLE IF NOT EXISTS courses (
     description TEXT,
     language VARCHAR(5) NOT NULL,
     file_path VARCHAR(255),
+    question_limit INT NOT NULL DEFAULT 5,
+    passing_score INT NOT NULL DEFAULT 80,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 

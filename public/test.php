@@ -14,6 +14,9 @@ if (!$course) {
     redirect('dashboard.php');
 }
 
+$questionLimit = max(1, min(50, (int)($course['question_limit'] ?? 5)));
+$passingScore = max(1, min(100, (int)($course['passing_score'] ?? 80)));
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $answers = $_POST['answers'] ?? [];
     $questions = $_SESSION['current_test']['questions'] ?? [];
@@ -33,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $total = max(count($questions), 1);
     $score = (int)round(($correct / $total) * 100);
-    $passed = $score >= 80;
+    $passed = $score >= $passingScore;
     $resultId = save_test_result($user['id'], $courseId, $score, $passed);
 
     if ($passed) {
@@ -60,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     redirect('dashboard.php#results');
 }
 
-$questions = get_random_questions($courseId, $_SESSION['lang'] ?? 'pl');
+$questions = get_random_questions($courseId, $_SESSION['lang'] ?? 'pl', $questionLimit);
 $_SESSION['current_test'] = [
     'course_id' => $courseId,
     'questions' => $questions,
@@ -69,7 +72,7 @@ $_SESSION['current_test'] = [
 <div class="container">
     <div class="card" style="margin-top:2rem;">
         <h1><?= t('test.heading') ?> – <?= htmlspecialchars($course['title']) ?></h1>
-        <p><?= t('test.minimum_score', ['score' => '80']) ?></p>
+        <p><?= t('test.minimum_score', ['score' => $passingScore]) ?></p>
         <form method="post">
             <input type="hidden" name="course_id" value="<?= $course['id'] ?>">
             <?php foreach ($questions as $index => $question): ?>

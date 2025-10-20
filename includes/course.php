@@ -2,6 +2,49 @@
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/functions.php';
 
+function ensure_course_test_settings_columns(): void
+{
+    static $ensured = false;
+
+    if ($ensured) {
+        return;
+    }
+
+    $pdo = get_db_connection();
+
+    try {
+        $hasQuestionLimit = $pdo->query("SHOW COLUMNS FROM courses LIKE 'question_limit'")->fetch();
+        if (!$hasQuestionLimit) {
+            $pdo->exec('ALTER TABLE courses ADD COLUMN question_limit INT NOT NULL DEFAULT 5');
+        }
+
+        $hasPassingScore = $pdo->query("SHOW COLUMNS FROM courses LIKE 'passing_score'")->fetch();
+        if (!$hasPassingScore) {
+            $pdo->exec('ALTER TABLE courses ADD COLUMN passing_score INT NOT NULL DEFAULT 80');
+        }
+    } catch (PDOException $exception) {
+        // Swallow the exception to keep backwards compatibility with read-only connections.
+    }
+
+    $ensured = true;
+}
+
+function normalize_course_settings(array $course): array
+{
+    if (!array_key_exists('question_limit', $course)) {
+        $course['question_limit'] = 5;
+    }
+
+    if (!array_key_exists('passing_score', $course)) {
+        $course['passing_score'] = 80;
+    }
+
+    $course['question_limit'] = max(1, (int) $course['question_limit']);
+    $course['passing_score'] = max(1, min(100, (int) $course['passing_score']));
+
+    return $course;
+}
+
 function certificates_support_extended_details(): bool
 {
     static $supports = null;
@@ -24,19 +67,31 @@ function certificates_support_extended_details(): bool
 
 function get_courses(string $language, ?int $userId = null): array
 {
+    ensure_course_test_settings_columns();
     $pdo = get_db_connection();
     $stmt = $pdo->prepare('SELECT * FROM courses WHERE language = :language ORDER BY title');
     $stmt->execute(['language' => $language]);
-    return $stmt->fetchAll();
+    $courses = $stmt->fetchAll();
+
+    foreach ($courses as &$course) {
+        $course = normalize_course_settings($course);
+    }
+
+    return $courses;
 }
 
 function get_course(int $courseId): ?array
 {
+    ensure_course_test_settings_columns();
     $pdo = get_db_connection();
     $stmt = $pdo->prepare('SELECT * FROM courses WHERE id = :id LIMIT 1');
     $stmt->execute(['id' => $courseId]);
     $course = $stmt->fetch();
-    return $course ?: null;
+    if (!$course) {
+        return null;
+    }
+
+    return normalize_course_settings($course);
 }
 
 function get_course_materials(int $courseId): array
