@@ -6,8 +6,16 @@
   --accent-soft: #fde9ec;
   --bg: #f5f7fb;
   --card: #ffffff;
-  --muted: #64748b;
+  --text: #1e293b;
+  --muted: #475569;
+  --muted-soft: #64748b;
   --border: rgba(15, 23, 42, 0.08);
+}
+
+.dark {
+  --text: #f1f5f9;
+  --muted: rgba(203, 213, 225, 0.85);
+  --muted-soft: rgba(203, 213, 225, 0.7);
 }
 
 * {
@@ -18,7 +26,7 @@ body {
   margin: 0;
   font-family: 'Inter', 'Segoe UI', sans-serif;
   background: var(--bg);
-  color: var(--primary-dark);
+  color: var(--text);
   min-height: 100vh;
   position: relative;
 }
@@ -113,7 +121,7 @@ a {
 
 .brand-tagline {
   font-size: 0.85rem;
-  color: var(--muted);
+  color: var(--muted-soft);
   max-width: 240px;
 }
 
@@ -134,7 +142,7 @@ a {
 
 .lang-switcher span {
   font-size: 0.75rem;
-  color: var(--muted);
+  color: var(--muted-soft);
   font-weight: 600;
   margin-right: 0.35rem;
 }
@@ -544,6 +552,7 @@ a {
   font-size: 1.05rem;
   line-height: 1.8;
   margin-bottom: 2rem;
+  color: rgba(241, 245, 249, 0.9);
 }
 
 .company-list {
@@ -564,12 +573,13 @@ a {
   backdrop-filter: blur(6px);
   font-size: 0.98rem;
   line-height: 1.6;
+  color: rgba(248, 250, 252, 0.92);
 }
 
 .company-contact {
   margin-top: 2.2rem;
   font-size: 0.95rem;
-  color: rgba(226, 232, 240, 0.88);
+  color: rgba(248, 250, 252, 0.92);
 }
 
 .site-footer {
@@ -855,7 +865,7 @@ select {
 
 .dark body {
   background: #0f172a;
-  color: #f8fafc;
+  color: var(--text);
 }
 
 .dark body::before {
@@ -1113,7 +1123,7 @@ select {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(226, 232, 240, 0.8);
+  color: rgba(248, 250, 252, 0.88);
 }
 
 .admin-user-email {
@@ -1125,7 +1135,7 @@ select {
 .admin-user-role {
   font-weight: 600;
   font-size: 0.9rem;
-  color: rgba(226, 232, 240, 0.85);
+  color: rgba(248, 250, 252, 0.9);
 }
 
 .btn-ghost-light {
@@ -1157,7 +1167,7 @@ select {
   gap: 0.4rem;
   padding: 0.65rem 1.15rem;
   border-radius: 999px;
-  color: rgba(226, 232, 240, 0.8);
+  color: rgba(248, 250, 252, 0.88);
   font-weight: 600;
   letter-spacing: 0.02em;
   transition: all 0.2s ease;
@@ -1569,7 +1579,7 @@ textarea {
 }
 
 .admin-login-panel .brand-tagline {
-  color: rgba(226, 232, 240, 0.72);
+  color: rgba(241, 245, 249, 0.82);
 }
 
 .admin-login-panel h1 {
@@ -1585,7 +1595,7 @@ textarea {
 
 .admin-login-subtitle {
   margin: 0;
-  color: rgba(226, 232, 240, 0.82);
+  color: rgba(241, 245, 249, 0.88);
   line-height: 1.6;
 }
 
@@ -1626,7 +1636,7 @@ textarea {
 .admin-login-aside-inner li {
   position: relative;
   padding-left: 1.5rem;
-  color: rgba(226, 232, 240, 0.9);
+  color: rgba(248, 250, 252, 0.94);
   line-height: 1.6;
 }
 
