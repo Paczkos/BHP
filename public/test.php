@@ -1,0 +1,106 @@
+<?php
+require_once __DIR__ . '/../includes/header.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/course.php';
+require_once __DIR__ . '/../includes/certificate.php';
+
+require_login();
+$user = current_user();
+$courseId = (int)($_GET['course_id'] ?? ($_POST['course_id'] ?? 0));
+$course = get_course($courseId);
+
+if (!$course) {
+    flash('error', t('alerts.course_not_found'));
+    redirect('dashboard.php');
+}
+
+$questionLimit = max(1, min(50, (int)($course['question_limit'] ?? 5)));
+$passingScore = max(1, min(100, (int)($course['passing_score'] ?? 80)));
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $answers = $_POST['answers'] ?? [];
+    $questions = $_SESSION['current_test']['questions'] ?? [];
+    $correct = 0;
+
+    $pdo = get_db_connection();
+    foreach ($questions as $question) {
+        $answerId = (int)($answers[$question['id']] ?? 0);
+        if ($answerId) {
+            $stmt = $pdo->prepare('SELECT is_correct FROM answers WHERE id = :id');
+            $stmt->execute(['id' => $answerId]);
+            if ($stmt->fetchColumn()) {
+                $correct++;
+            }
+        }
+    }
+
+    $total = max(count($questions), 1);
+    $score = (int)round(($correct / $total) * 100);
+    $passed = $score >= $passingScore;
+    $resultId = save_test_result($user['id'], $courseId, $score, $passed);
+
+    if ($passed) {
+        $result = get_result_by_id($resultId);
+        $testDate = $result && !empty($result['completed_at']) ? date('Y-m-d', strtotime($result['completed_at'])) : date('Y-m-d');
+        $trainingDate = $testDate;
+        $companyName = null;
+
+        $certificate = record_certificate($user['id'], $courseId, $trainingDate, $testDate, $companyName);
+        $pdfPath = generate_certificate_pdf($user, $course, $certificate['number'], $trainingDate, $testDate, $score);
+
+        $pdo->prepare('UPDATE certificates SET pdf_path = :path WHERE id = :id')
+            ->execute([
+                'path' => $pdfPath,
+                'id' => $certificate['id'],
+            ]);
+        send_notification($user['email'], t('nav.certificates'), t('alerts.certificate_generated'));
+        flash('success', t('test.result_passed', ['score' => $score]));
+    } else {
+        flash('error', t('test.result_failed', ['score' => $score]));
+    }
+
+    unset($_SESSION['current_test']);
+    redirect('dashboard.php#results');
+}
+
+$questions = get_random_questions($courseId, $_SESSION['lang'] ?? 'pl', $questionLimit);
+$_SESSION['current_test'] = [
+    'course_id' => $courseId,
+    'questions' => $questions,
+];
+?>
+<div class="container">
+    <div class="card" style="margin-top:2rem;">
+        <h1><?= t('test.heading') ?> – <?= htmlspecialchars($course['title']) ?></h1>
+        <p><?= t('test.minimum_score', ['score' => $passingScore]) ?></p>
+        <form method="post" class="test-form">
+            <input type="hidden" name="course_id" value="<?= $course['id'] ?>">
+            <?php foreach ($questions as $index => $question): ?>
+                <div class="test-question">
+                    <div class="test-question-title">
+                        <span class="test-question-index"><?= ($index + 1) ?>.</span>
+                        <span class="test-question-text"><?= htmlspecialchars($question['question_text']) ?></span>
+                    </div>
+                    <div class="answer-group">
+                        <?php foreach ($question['answers'] as $answer): ?>
+                            <label class="answer-option">
+                                <input
+                                    type="radio"
+                                    name="answers[<?= $question['id'] ?>]"
+                                    value="<?= $answer['id'] ?>"
+                                    required
+                                >
+                                <span class="answer-indicator" aria-hidden="true"></span>
+                                <span class="answer-text"><?= htmlspecialchars($answer['answer_text']) ?></span>
+                            </label>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <button type="submit" class="btn btn-primary"><?= t('test.submit') ?></button>
+        </form>
+    </div>
+</div>
+<?php
+require_once __DIR__ . '/../includes/footer.php';
+?>

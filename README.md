@@ -1,2 +1,51 @@
-# BHP
-BHP learn and test
+# AGAT GROUP – Platforma BHP
+
+Kompletny szkielet aplikacji szkoleniowej BHP dla cudzoziemców firmowany przez AGAT GROUP Sp. z o.o. Projekt zawiera wielojęzyczny interfejs (PL, EN, RU, ID, VI), rejestrację użytkowników, panel kursanta oraz panel administratora z zarządzaniem kursami, pytaniami i certyfikatami.
+
+## Wymagania
+
+- PHP 8+
+- MySQL 8
+- Serwer HTTP (np. Apache z XAMPP)
+
+## Instalacja
+
+1. Sklonuj repozytorium do katalogu dostępnego przez serwer WWW (np. `htdocs/BHP`).
+2. Utwórz bazę danych MySQL o nazwie `serwer244157_bhp` i zaimportuj plik `sql/schema.sql`.
+3. Domyślne połączenie korzysta z danych hostingu LH.pl (`DB_USER=serwer244157_bhp`, `DB_PASS=PAczkos19861986#`). W razie potrzeby zmodyfikuj je w `includes/config.php` lub ustaw zmienne środowiskowe (`DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`).
+4. Upewnij się, że katalogi `uploads/` oraz `certificates/` mają prawa do zapisu.
+5. Uruchom panel kursanta przez `http://localhost/BHP/public`.
+6. Panel administratora działa niezależnie i logowanie odbywa się pod adresem `http://localhost/BHP/admin/login.php` (w środowisku produkcyjnym: `https://opus7.pl/bhp2/admin/login.php`).
+
+## Konta testowe
+
+- Administrator: `admin@agatgroup.pl` / `AgatGroup#2024` (konto zostaje automatycznie utworzone lub zaktualizowane przy pierwszej próbie logowania; użyj panelu `admin/login.php`).
+- Kursanci: `anna@example.com`, `hoa@example.com`, `ivan@example.com` (hasło `Password123!`).
+
+## Funkcjonalności
+
+- Wielojęzyczność z plikami JSON.
+- Rejestracja i logowanie pracowników.
+- Panel kursanta z materiałami, testami i certyfikatami PDF.
+- Edycja profilu kursanta (dane osobowe, język, hasło).
+- Panel administratora (użytkownicy, kursy, pytania, wyniki, certyfikaty).
+- Import pytań do testów z pliku Excel (.xlsx) oraz edycja i usuwanie pytań pojedynczych.
+- Generowanie certyfikatów PDF oraz przesyłanie podpisanych skanów.
+- Tryb ciemny (localStorage) i automatyczne powiadomienia e-mail (funkcja `mail`).
+
+## Struktura katalogów
+
+```
+public/         - warstwa frontowa dla kursantów
+admin/          - panel administratora
+includes/       - wspólne funkcje, konfiguracja i generowanie certyfikatów
+lang/           - pliki tłumaczeń (JSON)
+assets/         - style CSS i skrypty JS
+uploads/        - materiały szkoleniowe i podpisane skany
+certificates/   - wygenerowane certyfikaty PDF
+sql/            - struktura bazy danych i dane przykładowe
+```
+
+## Testy
+
+Aplikacja nie zawiera testów automatycznych. Uruchom projekt lokalnie i zweryfikuj logowanie, wyświetlanie kursów oraz generowanie certyfikatów po zdaniu testu.
